@@ -133,11 +133,12 @@ final class QuestionTree
         );
 
         if ($config->hasRector) {
-            $config->rectorVersion = $this->console->choice(
+            $rectorVersionLabel = $this->console->choice(
                 question: '  Rector version',
-                choices: ['1', '2'],
-                default: $config->rectorVersion,
+                choices: ['version 1', 'version 2'],
+                default: $config->rectorVersion === '1' ? 'version 1' : 'version 2',
             );
+            $config->rectorVersion = $rectorVersionLabel === 'version 1' ? '1' : '2';
         }
 
         $config->hasPhpStan = $this->console->confirm(
@@ -146,11 +147,31 @@ final class QuestionTree
         );
 
         if ($config->hasPhpStan) {
-            $config->phpStanLevel = $this->console->choice(
+            $phpStanLevelLabels = [
+                'level 0',
+                'level 1',
+                'level 2',
+                'level 3',
+                'level 4',
+                'level 5',
+                'level 6',
+                'level 7',
+                'level 8',
+                'level 9',
+                'level max',
+            ];
+            $defaultPhpStanLabel = $config->phpStanLevel === 'max'
+                ? 'level max'
+                : 'level ' . ($config->phpStanLevel !== '' ? $config->phpStanLevel : '8');
+
+            $phpStanLevelLabel = $this->console->choice(
                 question: '  PHPStan level',
-                choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'max'],
-                default: $config->phpStanLevel,
+                choices: $phpStanLevelLabels,
+                default: $defaultPhpStanLabel,
             );
+            $config->phpStanLevel = $phpStanLevelLabel === 'level max'
+                ? 'max'
+                : trim(str_replace('level', '', $phpStanLevelLabel));
         }
 
         $config->hasPhpCsFixer = $this->console->confirm(

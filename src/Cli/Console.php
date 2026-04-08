@@ -156,7 +156,11 @@ final class Console
         $this->writeln($this->dim('    Use ↑/↓ and Enter (or type a number).'));
 
         $render = function (string $typedInput) use ($choices, &$selectedIndex): void {
-            $this->write("\033[" . (count($choices) + 1) . 'A');
+            // Cursor is at the end of the prompt line (below the last choice). Move up
+            // exactly one line per choice so we land on the first choice line — not onto the
+            // hint line above (the old count+1 caused a one-line drift and duplicated prompts).
+            $linesUp = count($choices);
+            $this->write("\033[{$linesUp}A\033[G");
             for ($i = 0, $max = count($choices); $i < $max; ++$i) {
                 $marker = $i === $selectedIndex ? $this->green('▸') : ' ';
                 $this->write("\033[2K\r");
@@ -234,6 +238,12 @@ final class Console
         $hint = $default ? $this->green('Y') . '/n' : 'y/' . $this->green('N');
         $this->write($this->bold('  ? ' . $question . ':') . ' [' . $hint . '] ');
 
+        // After arrow-key choice mode, line-buffered input can be unreliable until the TTY is
+        // fully sane again; read Y/N/Enter directly (same raw-mode path as interactive choice).
+        if ($this->isInteractive && stream_isatty($this->input)) {
+            return $this->confirmInteractive($default);
+        }
+
         $answer = strtolower(trim($this->readLine()));
 
         if ($answer === '') {
@@ -241,6 +251,51 @@ final class Console
         }
 
         return in_array($answer, ['y', 'yes', '1', 'true'], true);
+    }
+
+    /**
+     * Reads a single-key yes/no answer when stdin is a TTY (echo off in raw mode).
+     *
+     * @codeCoverageIgnore
+     */
+    private function confirmInteractive(bool $default): bool
+    {
+        $sttyMode = $this->enableRawMode();
+
+        try {
+            while (true) {
+                $key = $this->readKey();
+                if ($key === '') {
+                    continue;
+                }
+
+                if ($key[0] === "\033") {
+                    continue;
+                }
+
+                if ($key === "\n" || $key === "\r") {
+                    $this->writeln($default ? 'Y' : 'N');
+
+                    return $default;
+                }
+
+                $lower = strtolower($key[0]);
+
+                if ($lower === 'y') {
+                    $this->writeln('y');
+
+                    return true;
+                }
+
+                if ($lower === 'n') {
+                    $this->writeln('n');
+
+                    return false;
+                }
+            }
+        } finally {
+            $this->restoreRawMode($sttyMode);
+        }
     }
 
     /**
