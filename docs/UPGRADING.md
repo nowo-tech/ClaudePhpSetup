@@ -16,6 +16,13 @@
 
 ## Version-specific notes
 
+### 1.1.2 → 1.1.3
+
+- No breaking changes.
+- Interactive single-choice redraw in TTY was fixed to avoid duplicated prompt lines while using arrow keys.
+- Confirm prompts (`[y/N]`) now accept single-key `y`/`n` reliably in interactive mode.
+- Wizard labels are clearer: Rector shows `version 1/2`, PHPStan shows `level 0..9/max`.
+
 ### 1.1.1 → 1.1.2
 
 - No breaking changes.

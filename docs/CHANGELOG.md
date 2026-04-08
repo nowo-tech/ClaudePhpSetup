@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.3] — 2026-04-08
+
+### Changed
+
+- Interactive CLI prompt UX refined: fixed arrow-key redraw artifacts in single-choice prompts (no duplicated `Enter number` lines).
+- Confirm prompts now reliably accept single-key `y`/`n` in interactive terminals after arrow-key navigation mode.
+- Quality tool labels in the wizard are more explicit: Rector uses `version 1/2` and PHPStan uses `level 0..9/max`.
+
 ## [1.1.2] — 2026-04-08
 
 ### Added
@@ -68,6 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--dir` flag to target a custom project directory
 - Heredoc dedentation — source code indented templates produce clean output
 
+[1.1.3]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.3
 [1.1.2]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.2
 [1.1.1]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.1
 [1.1.0]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.0

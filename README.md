@@ -108,9 +108,9 @@ The wizard auto-detects your stack from `composer.json` and pre-fills answers. Y
 
 ── Quality Tools ──
   ? Rector: [Y]
-    ? Rector version: [2]
+    ? Rector version: [version 2]
   ? PHPStan: [Y]
-    ? PHPStan level: [8]
+    ? PHPStan level: [level 8]
   ? PHP-CS-Fixer: [Y]
   ? GrumPHP: [N]
 

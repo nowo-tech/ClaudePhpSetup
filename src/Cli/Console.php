@@ -240,9 +240,11 @@ final class Console
 
         // After arrow-key choice mode, line-buffered input can be unreliable until the TTY is
         // fully sane again; read Y/N/Enter directly (same raw-mode path as interactive choice).
+        // @codeCoverageIgnoreStart
         if ($this->isInteractive && stream_isatty($this->input)) {
             return $this->confirmInteractive($default);
         }
+        // @codeCoverageIgnoreEnd
 
         $answer = strtolower(trim($this->readLine()));
 

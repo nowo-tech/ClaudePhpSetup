@@ -10,8 +10,8 @@
   ? Are you upgrading Symfony? N
 
 ── Quality Tools ──
-  ? Rector: Y  →  version: 2
-  ? PHPStan: Y  →  level: 8
+  ? Rector version: version 2
+  ? PHPStan level: level 8
   ? PHP-CS-Fixer: Y
   ? GrumPHP: Y
   ? Twig-CS-Fixer: Y
@@ -67,7 +67,7 @@ CLAUDE.md
     ? Upgrading to which Symfony version? 8.0
 
 ── Quality Tools ──
-  ? Rector: Y  →  version: 2
+  ? Rector version: version 2
   ...
 ```
 
@@ -86,8 +86,8 @@ Adds to generated files:
   ? Framework: laravel  →  version: 11
 
 ── Quality Tools ──
-  ? Rector: Y  →  version: 2
-  ? PHPStan: Y  →  level: 7
+  ? Rector version: version 2
+  ? PHPStan level: level 7
   ? PHP-CS-Fixer: Y
 
 ── Testing ──
@@ -114,7 +114,7 @@ Adds to generated files:
 
 ## Using the generated slash commands
 
-Single-choice wizard prompts accept both numeric input and arrow navigation (`↑` / `↓` + Enter) in interactive terminals.
+Single-choice wizard prompts accept both numeric input and arrow navigation (`↑` / `↓` + Enter) in interactive terminals. Confirm prompts also accept single-key `y` / `n` in interactive mode.
 
 In Claude Code, invoke commands with `/`:
 
