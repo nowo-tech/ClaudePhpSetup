@@ -63,6 +63,9 @@
             "NowoTech\\ClaudePhpSetup\\Tests\\": "tests/"
         }
     },
+    "bin": [
+        "bin/claude-php-setup"
+    ],
     "extra": {
         "class": "NowoTech\\ClaudePhpSetup\\Plugin",
         "branch-alias": {
