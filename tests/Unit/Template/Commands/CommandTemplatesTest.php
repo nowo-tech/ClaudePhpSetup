@@ -11,9 +11,15 @@ use PHPUnit\Framework\TestCase;
 
 use function strlen;
 
+/**
+ * Represents the CommandTemplatesTest class.
+ */
 final class CommandTemplatesTest extends TestCase
 {
     #[Test]
+    /**
+     * Handles the itRendersAllCommandTemplates operation.
+     */
     public function itRendersAllCommandTemplates(): void
     {
         $config                   = new ProjectConfig();
@@ -40,7 +46,7 @@ final class CommandTemplatesTest extends TestCase
         }
 
         self::assertStringContainsString('grumphp.yml', $all['grumphp-check']);
-        self::assertStringContainsString('UPGRADE-7.2', $all['symfony-upgrade']);
+        self::assertStringContainsString('UPGRADE-8.0', $all['symfony-upgrade']);
         self::assertStringContainsString('qa', $all['qa-gate']);
         self::assertStringContainsString('docker compose exec', $all['docker-exec']);
         self::assertStringContainsString('Doctrine migration', $all['migration-review']);
@@ -48,6 +54,9 @@ final class CommandTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversCodeReviewWithoutOptionalTools operation.
+     */
     public function itCoversCodeReviewWithoutOptionalTools(): void
     {
         $minimal                = new ProjectConfig();
@@ -60,6 +69,9 @@ final class CommandTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversRectorDryForRector1x operation.
+     */
     public function itCoversRectorDryForRector1x(): void
     {
         $config                = new ProjectConfig();
@@ -72,6 +84,9 @@ final class CommandTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversQaGateRunnerHints operation.
+     */
     public function itCoversQaGateRunnerHints(): void
     {
         $make                = new ProjectConfig();

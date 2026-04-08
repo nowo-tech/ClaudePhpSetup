@@ -8,8 +8,14 @@ use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
 use function in_array;
 
+/**
+ * Represents the QualityToolsSection class.
+ */
 final class QualityToolsSection
 {
+    /**
+     * Handles the render operation.
+     */
     public static function render(ProjectConfig $config): string
     {
         $sections = [];
@@ -37,6 +43,9 @@ final class QualityToolsSection
         return "## Quality Tools\n\n" . implode("\n\n", $sections);
     }
 
+    /**
+     * Handles the rector operation.
+     */
     private static function rector(ProjectConfig $config): string
     {
         $runner     = in_array($config->commandRunner, ['make', 'both'], true) ? 'make' : 'composer';
@@ -79,6 +88,9 @@ final class QualityToolsSection
         MD;
     }
 
+    /**
+     * Handles the phpStan operation.
+     */
     private static function phpStan(ProjectConfig $config): string
     {
         $runner = in_array($config->commandRunner, ['make', 'both'], true) ? 'make' : 'composer';
@@ -121,6 +133,9 @@ final class QualityToolsSection
         MD;
     }
 
+    /**
+     * Handles the phpCsFixer operation.
+     */
     private static function phpCsFixer(ProjectConfig $config): string
     {
         $runner = in_array($config->commandRunner, ['make', 'both'], true) ? 'make' : 'composer';
@@ -151,6 +166,9 @@ final class QualityToolsSection
         MD;
     }
 
+    /**
+     * Handles the grumPhp operation.
+     */
     private static function grumPhp(ProjectConfig $config): string
     {
         $tools = [];

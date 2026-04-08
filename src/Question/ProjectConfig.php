@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace NowoTech\ClaudePhpSetup\Question;
 
+/**
+ * Represents the ProjectConfig class.
+ */
 final class ProjectConfig
 {
     // PHP

@@ -17,11 +17,17 @@ use const JSON_THROW_ON_ERROR;
 /**
  * Exercises QuestionTree branches that need specific stdin sequences (Symfony/Laravel paths, agents, API style).
  */
+/**
+ * Represents the QuestionTreeCoverageTest class.
+ */
 final class QuestionTreeCoverageTest extends TestCase
 {
     use MemoryStreamTrait;
 
     #[Test]
+    /**
+     * Handles the itRunsWithSymfonyUpgradeFromBranch operation.
+     */
     public function itRunsWithSymfonyUpgradeFromBranch(): void
     {
         $tmp = sys_get_temp_dir() . '/claude-qt-sf-up-' . uniqid();
@@ -63,6 +69,9 @@ final class QuestionTreeCoverageTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itRunsWithSymfonyComposerDefaults operation.
+     */
     public function itRunsWithSymfonyComposerDefaults(): void
     {
         $tmp = sys_get_temp_dir() . '/claude-qt-sf-' . uniqid();
@@ -97,6 +106,9 @@ final class QuestionTreeCoverageTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itRunsWithLaravelComposerDefaults operation.
+     */
     public function itRunsWithLaravelComposerDefaults(): void
     {
         $tmp = sys_get_temp_dir() . '/claude-qt-lv-' . uniqid();
@@ -130,6 +142,9 @@ final class QuestionTreeCoverageTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itRunsWithApiStyleChoiceWhenApiEnabled operation.
+     */
     public function itRunsWithApiStyleChoiceWhenApiEnabled(): void
     {
         $tmp = sys_get_temp_dir() . '/claude-qt-api-' . uniqid();
@@ -162,6 +177,9 @@ final class QuestionTreeCoverageTest extends TestCase
 
     #[Test]
     #[DataProvider('agentsStdinProvider')]
+    /**
+     * Handles the itRunsWithAgentsSelection operation.
+     */
     public function itRunsWithAgentsSelection(string $stdinPayload): void
     {
         $tmp = sys_get_temp_dir() . '/claude-qt-ag-' . uniqid();
@@ -199,6 +217,9 @@ final class QuestionTreeCoverageTest extends TestCase
         return ['default' => [$payload]];
     }
 
+    /**
+     * Handles the removeTree operation.
+     */
     private function removeTree(string $dir): void
     {
         if (!is_dir($dir)) {

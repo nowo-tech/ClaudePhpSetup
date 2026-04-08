@@ -1,12 +1,12 @@
 # Usage Examples
 
-## Symfony 7 project with full stack
+## Symfony 8 project with full stack
 
 ```
 ── Project Settings ──
   ? PHP version: 8.3
   ? Framework: symfony
-  ? Symfony version: 7.2
+  ? Current Symfony version: 8.0
   ? Are you upgrading Symfony? N
 
 ── Quality Tools ──
@@ -57,14 +57,14 @@ CLAUDE.md
 
 ---
 
-## Symfony upgrade project (6.4 → 7.2)
+## Symfony upgrade project (7.2 → 8.0)
 
 ```
 ── Project Settings ──
   ? PHP version: 8.3
-  ? Framework: symfony  →  version: 7.2
+  ? Framework: symfony  →  current version: 7.2
   ? Are you upgrading Symfony? Y
-    ? Upgrading from which version? 6.4
+    ? Upgrading to which Symfony version? 8.0
 
 ── Quality Tools ──
   ? Rector: Y  →  version: 2
@@ -113,6 +113,8 @@ Adds to generated files:
 ---
 
 ## Using the generated slash commands
+
+Single-choice wizard prompts accept both numeric input and arrow navigation (`↑` / `↓` + Enter) in interactive terminals.
 
 In Claude Code, invoke commands with `/`:
 

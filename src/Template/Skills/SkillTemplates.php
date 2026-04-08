@@ -9,6 +9,9 @@ use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 /**
  * Skill content for `.claude/skills/<name>/SKILL.md` (YAML frontmatter + body).
  */
+/**
+ * Represents the SkillTemplates class.
+ */
 final class SkillTemplates
 {
     /** @return array<string, string> key => SKILL.md body */
@@ -29,6 +32,9 @@ final class SkillTemplates
         return array_filter($skills, static fn (string $s): bool => $s !== '');
     }
 
+    /**
+     * Handles the phpQuality operation.
+     */
     private static function phpQuality(ProjectConfig $config): string
     {
         $runner = $config->commandRunner === 'composer' ? 'composer' : 'make';
@@ -59,6 +65,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the phpTesting operation.
+     */
     private static function phpTesting(ProjectConfig $config): string
     {
         if ($config->testingFramework === 'none') {
@@ -96,6 +105,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the rectorWorkflow operation.
+     */
     private static function rectorWorkflow(ProjectConfig $config): string
     {
         if (!$config->hasRector) {
@@ -128,6 +140,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the apiSecurity operation.
+     */
     private static function apiSecurity(ProjectConfig $config): string
     {
         if (!$config->hasApi) {
@@ -156,6 +171,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the doctrineData operation.
+     */
     private static function doctrineData(ProjectConfig $config): string
     {
         if (!$config->hasDoctrine) {
@@ -183,6 +201,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the dockerDev operation.
+     */
     private static function dockerDev(ProjectConfig $config): string
     {
         if (!$config->hasDocker) {
@@ -210,6 +231,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the ciPipeline operation.
+     */
     private static function ciPipeline(ProjectConfig $config): string
     {
         if (!$config->hasCi) {
@@ -237,6 +261,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the observability operation.
+     */
     private static function observability(ProjectConfig $config): string
     {
         if (!$config->includeObservabilityNotes) {
@@ -263,6 +290,9 @@ final class SkillTemplates
         MD;
     }
 
+    /**
+     * Handles the mcpTools operation.
+     */
     private static function mcpTools(ProjectConfig $config): string
     {
         if (!$config->includeMcpNotes) {

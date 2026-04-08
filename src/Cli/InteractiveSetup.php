@@ -12,8 +12,14 @@ use NowoTech\ClaudePhpSetup\Question\QuestionTree;
 /**
  * Entry point for the interactive CLI setup wizard.
  */
+/**
+ * Represents the InteractiveSetup class.
+ */
 final class InteractiveSetup
 {
+    /**
+     * Handles the __construct operation.
+     */
     public function __construct(
         private readonly Console $console,
         private readonly ProjectDetector $detector,
@@ -22,6 +28,9 @@ final class InteractiveSetup
     ) {
     }
 
+    /**
+     * Handles the create operation.
+     */
     public static function create(): self
     {
         $console = new Console();
@@ -34,6 +43,9 @@ final class InteractiveSetup
         );
     }
 
+    /**
+     * Handles the run operation.
+     */
     public function run(string $projectDir, bool $forceOverwrite = false): int
     {
         $this->printBanner();
@@ -80,6 +92,9 @@ final class InteractiveSetup
         return 0;
     }
 
+    /**
+     * Handles the printBanner operation.
+     */
     private function printBanner(): void
     {
         $this->console->writeln();
@@ -90,6 +105,9 @@ final class InteractiveSetup
         $this->console->writeln();
     }
 
+    /**
+     * Handles the previewFiles operation.
+     */
     private function previewFiles(ProjectConfig $config): void
     {
         $this->console->writeln('  Files to generate:');
@@ -135,6 +153,9 @@ final class InteractiveSetup
         }
     }
 
+    /**
+     * Handles the printNextSteps operation.
+     */
     private function printNextSteps(ProjectConfig $config): void
     {
         $this->console->writeln();

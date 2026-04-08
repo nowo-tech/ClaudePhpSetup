@@ -19,11 +19,17 @@ use const STDOUT;
 /**
  * Integration tests: full generation pipeline with a realistic project config.
  */
+/**
+ * Represents the SetupIntegrationTest class.
+ */
 final class SetupIntegrationTest extends TestCase
 {
     private string $tmpDir;
     private FileGenerator $generator;
 
+    /**
+     * Handles the setUp operation.
+     */
     protected function setUp(): void
     {
         $this->tmpDir = sys_get_temp_dir() . '/claude-php-setup-integration-' . uniqid();
@@ -33,12 +39,18 @@ final class SetupIntegrationTest extends TestCase
         $this->generator = new FileGenerator($console);
     }
 
+    /**
+     * Handles the tearDown operation.
+     */
     protected function tearDown(): void
     {
         $this->removeDir($this->tmpDir);
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesFullSymfonySetup operation.
+     */
     public function itGeneratesFullSymfonySetup(): void
     {
         $config = $this->symfonyConfig();
@@ -70,6 +82,9 @@ final class SetupIntegrationTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesUpgradeContentWhenUpgrading operation.
+     */
     public function itGeneratesUpgradeContentWhenUpgrading(): void
     {
         $config                     = $this->symfonyConfig();
@@ -89,6 +104,9 @@ final class SetupIntegrationTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesNoFrameworkSetup operation.
+     */
     public function itGeneratesNoFrameworkSetup(): void
     {
         $config                   = new ProjectConfig();
@@ -115,6 +133,9 @@ final class SetupIntegrationTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itProducesCleanlyDedentedOutput operation.
+     */
     public function itProducesCleanlyDedentedOutput(): void
     {
         $config = $this->symfonyConfig();
@@ -145,6 +166,9 @@ final class SetupIntegrationTest extends TestCase
         }
     }
 
+    /**
+     * Handles the symfonyConfig operation.
+     */
     private function symfonyConfig(): ProjectConfig
     {
         $config                   = new ProjectConfig();
@@ -185,6 +209,9 @@ final class SetupIntegrationTest extends TestCase
         return $config;
     }
 
+    /**
+     * Handles the removeDir operation.
+     */
     private function removeDir(string $dir): void
     {
         if (!is_dir($dir)) {

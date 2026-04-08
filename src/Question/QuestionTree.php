@@ -9,13 +9,22 @@ use NowoTech\ClaudePhpSetup\Cli\Console;
 /**
  * Interactive question tree that fills in a ProjectConfig.
  */
+/**
+ * Represents the QuestionTree class.
+ */
 final class QuestionTree
 {
+    /**
+     * Handles the __construct operation.
+     */
     public function __construct(
         private readonly Console $console,
     ) {
     }
 
+    /**
+     * Handles the run operation.
+     */
     public function run(ProjectConfig $detected): ProjectConfig
     {
         $config = clone $detected;
@@ -42,6 +51,9 @@ final class QuestionTree
         return $config;
     }
 
+    /**
+     * Handles the askPhpVersion operation.
+     */
     private function askPhpVersion(ProjectConfig $config): void
     {
         $config->phpVersion = $this->console->choice(
@@ -51,6 +63,9 @@ final class QuestionTree
         );
     }
 
+    /**
+     * Handles the askFramework operation.
+     */
     private function askFramework(ProjectConfig $config): void
     {
         $config->framework = $this->console->choice(
@@ -60,10 +75,11 @@ final class QuestionTree
         );
 
         if ($config->framework === 'symfony') {
-            $config->frameworkVersion = $this->console->choice(
-                question: 'Symfony version',
-                choices: ['5.4', '6.4', '7.0', '7.1', '7.2'],
-                default: $config->frameworkVersion ?? '7.2',
+            $symfonyVersions = ['5.4', '6.4', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0'];
+            $currentVersion  = $this->console->choice(
+                question: 'Current Symfony version',
+                choices: $symfonyVersions,
+                default: $config->frameworkVersion ?? '8.0',
             );
 
             $config->isUpgrading = $this->console->confirm(
@@ -72,29 +88,43 @@ final class QuestionTree
             );
 
             if ($config->isUpgrading) {
-                $upgradeFromChoices = ['4.4', '5.4', '6.4', '7.0', '7.1'];
-                // Remove current and newer versions
-                $upgradeFromChoices = array_filter(
-                    $upgradeFromChoices,
-                    static fn (string $v): bool => version_compare($v, $config->frameworkVersion ?? '7.2', '<'),
-                );
-                $config->upgradeFromVersion = $this->console->choice(
-                    question: 'Upgrading from which Symfony version?',
-                    choices: array_values($upgradeFromChoices),
-                    default: $upgradeFromChoices[array_key_first($upgradeFromChoices)] ?? '6.4',
-                );
-            }
-        }
+                $upgradeToChoices = array_values(array_filter(
+                    $symfonyVersions,
+                    static fn (string $v): bool => version_compare($v, $currentVersion, '>'),
+                ));
 
-        if ($config->framework === 'laravel') {
+                if ($upgradeToChoices === []) {
+                    $this->console->warning('No newer Symfony version available in the supported list; upgrade flow disabled.');
+                    $config->isUpgrading      = false;
+                    $config->frameworkVersion = $currentVersion;
+                } else {
+                    $config->frameworkVersion = $this->console->choice(
+                        question: 'Upgrading to which Symfony version?',
+                        choices: $upgradeToChoices,
+                        default: $upgradeToChoices[array_key_first($upgradeToChoices)] ?? $currentVersion,
+                    );
+                    $config->upgradeFromVersion = $currentVersion;
+                }
+            } else {
+                $config->frameworkVersion   = $currentVersion;
+                $config->upgradeFromVersion = null;
+            }
+        } elseif ($config->framework === 'laravel') {
             $config->frameworkVersion = $this->console->choice(
                 question: 'Laravel version',
                 choices: ['10', '11', '12'],
                 default: $config->frameworkVersion ?? '11',
             );
+        } else {
+            $config->frameworkVersion   = null;
+            $config->upgradeFromVersion = null;
+            $config->isUpgrading        = false;
         }
     }
 
+    /**
+     * Handles the askQualityTools operation.
+     */
     private function askQualityTools(ProjectConfig $config): void
     {
         $config->hasRector = $this->console->confirm(
@@ -141,6 +171,9 @@ final class QuestionTree
         }
     }
 
+    /**
+     * Handles the askTesting operation.
+     */
     private function askTesting(ProjectConfig $config): void
     {
         $config->testingFramework = $this->console->choice(
@@ -150,6 +183,9 @@ final class QuestionTree
         );
     }
 
+    /**
+     * Handles the askArchitecture operation.
+     */
     private function askArchitecture(ProjectConfig $config): void
     {
         $config->hasTwig = $this->console->confirm(
@@ -188,6 +224,9 @@ final class QuestionTree
         );
     }
 
+    /**
+     * Handles the askOperational operation.
+     */
     private function askOperational(ProjectConfig $config): void
     {
         $config->hasDocker = $this->console->confirm(
@@ -211,6 +250,9 @@ final class QuestionTree
         );
     }
 
+    /**
+     * Handles the askGeneration operation.
+     */
     private function askGeneration(ProjectConfig $config): void
     {
         $config->generateClaudeMd = $this->console->confirm(
@@ -407,6 +449,9 @@ final class QuestionTree
         return $skills;
     }
 
+    /**
+     * Handles the hasExistingFiles operation.
+     */
     private function hasExistingFiles(ProjectConfig $config): bool
     {
         $checks = [

@@ -13,16 +13,25 @@ use function in_array;
 
 use const JSON_PRETTY_PRINT;
 
+/**
+ * Represents the ProjectDetectorTest class.
+ */
 final class ProjectDetectorTest extends TestCase
 {
     private ProjectDetector $detector;
 
+    /**
+     * Handles the setUp operation.
+     */
     protected function setUp(): void
     {
         $this->detector = new ProjectDetector();
     }
 
     #[Test]
+    /**
+     * Handles the itReturnsDefaultConfigWhenNoComposerJsonExists operation.
+     */
     public function itReturnsDefaultConfigWhenNoComposerJsonExists(): void
     {
         $config = $this->detector->detect('/nonexistent-directory');
@@ -37,6 +46,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsSymfonyFramework operation.
+     */
     public function itDetectsSymfonyFramework(): void
     {
         $dir = $this->createTempProjectWith([
@@ -56,6 +68,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsLaravelFramework operation.
+     */
     public function itDetectsLaravelFramework(): void
     {
         $dir = $this->createTempProjectWith([
@@ -74,6 +89,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsQualityTools operation.
+     */
     public function itDetectsQualityTools(): void
     {
         $dir = $this->createTempProjectWith([
@@ -98,6 +116,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsRector1x operation.
+     */
     public function itDetectsRector1x(): void
     {
         $dir = $this->createTempProjectWith([
@@ -114,6 +135,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsPestTestingFramework operation.
+     */
     public function itDetectsPestTestingFramework(): void
     {
         $dir = $this->createTempProjectWith([
@@ -129,6 +153,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsBothTestFrameworks operation.
+     */
     public function itDetectsBothTestFrameworks(): void
     {
         $dir = $this->createTempProjectWith([
@@ -147,6 +174,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsTwig operation.
+     */
     public function itDetectsTwig(): void
     {
         $dir = $this->createTempProjectWith([
@@ -164,6 +194,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsDoctrine operation.
+     */
     public function itDetectsDoctrine(): void
     {
         $dir = $this->createTempProjectWith([
@@ -181,6 +214,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsMakefileCommandRunner operation.
+     */
     public function itDetectsMakefileCommandRunner(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '>=8.1']]);
@@ -195,6 +231,9 @@ final class ProjectDetectorTest extends TestCase
 
     #[Test]
     #[DataProvider('phpVersionConstraintProvider')]
+    /**
+     * Handles the itExtractsPhpVersionFromConstraint operation.
+     */
     public function itExtractsPhpVersionFromConstraint(string $constraint, string $expectedVersion): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => $constraint]]);
@@ -207,6 +246,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsSlimFramework operation.
+     */
     public function itDetectsSlimFramework(): void
     {
         $dir = $this->createTempProjectWith([
@@ -225,6 +267,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsYiiFramework operation.
+     */
     public function itDetectsYiiFramework(): void
     {
         $dir = $this->createTempProjectWith([
@@ -242,6 +287,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsApiPlatform operation.
+     */
     public function itDetectsApiPlatform(): void
     {
         $dir = $this->createTempProjectWith([
@@ -260,6 +308,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsSymfonyApiPlatformCorePackage operation.
+     */
     public function itDetectsSymfonyApiPlatformCorePackage(): void
     {
         $dir = $this->createTempProjectWith([
@@ -278,6 +329,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsTwigCsFixer operation.
+     */
     public function itDetectsTwigCsFixer(): void
     {
         $dir = $this->createTempProjectWith([
@@ -293,6 +347,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsPhpStanLevelFromPhpstanNeonDist operation.
+     */
     public function itDetectsPhpStanLevelFromPhpstanNeonDist(): void
     {
         $dir = $this->createTempProjectWith([
@@ -309,6 +366,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsMakefileCaseInsensitive operation.
+     */
     public function itDetectsMakefileCaseInsensitive(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '>=8.1']]);
@@ -322,6 +382,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsNoTestingFrameworkWhenNoTestPackages operation.
+     */
     public function itDetectsNoTestingFrameworkWhenNoTestPackages(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '>=8.1']]);
@@ -334,6 +397,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsPhpVersionBelow81FromConstraint operation.
+     */
     public function itDetectsPhpVersionBelow81FromConstraint(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '^7.4']]);
@@ -346,6 +412,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itKeepsDefaultPhpWhenComposerHasNoPhpRequirement operation.
+     */
     public function itKeepsDefaultPhpWhenComposerHasNoPhpRequirement(): void
     {
         $dir = $this->createTempProjectWith(['name' => 'vendor/pkg', 'require' => []]);
@@ -358,6 +427,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsPhpunitOnlyTesting operation.
+     */
     public function itDetectsPhpunitOnlyTesting(): void
     {
         $dir = $this->createTempProjectWith([
@@ -373,6 +445,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itNormalisesPhpVersion85ConstraintTo84Cap operation.
+     */
     public function itNormalisesPhpVersion85ConstraintTo84Cap(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '>=8.5']]);
@@ -385,6 +460,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itAllowsNullFrameworkVersionWhenConstraintHasNoMinor operation.
+     */
     public function itAllowsNullFrameworkVersionWhenConstraintHasNoMinor(): void
     {
         $dir = $this->createTempProjectWith([
@@ -403,6 +481,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itExtractsSymfonyVersionFromMajorOnlyConstraint operation.
+     */
     public function itExtractsSymfonyVersionFromMajorOnlyConstraint(): void
     {
         $dir = $this->createTempProjectWith([
@@ -420,6 +501,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itReturnsDefaultConfigWhenComposerJsonIsInvalid operation.
+     */
     public function itReturnsDefaultConfigWhenComposerJsonIsInvalid(): void
     {
         $dir = sys_get_temp_dir() . '/claude-php-setup-test-' . uniqid();
@@ -455,6 +539,9 @@ final class ProjectDetectorTest extends TestCase
         return $dir;
     }
 
+    /**
+     * Handles the removeTempProject operation.
+     */
     private function removeTempProject(string $dir): void
     {
         if (!is_dir($dir)) {
@@ -471,6 +558,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsDockerfileOrCompose operation.
+     */
     public function itDetectsDockerfileOrCompose(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '>=8.1']]);
@@ -484,6 +574,9 @@ final class ProjectDetectorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDetectsGithubActionsWorkflows operation.
+     */
     public function itDetectsGithubActionsWorkflows(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '>=8.1']]);

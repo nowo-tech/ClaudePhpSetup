@@ -11,6 +11,9 @@ use function array_filter;
 /**
  * Returns the markdown content for each Claude sub-agent.
  */
+/**
+ * Represents the AgentTemplates class.
+ */
 final class AgentTemplates
 {
     /** @return array<string, string> key => markdown content */
@@ -28,6 +31,9 @@ final class AgentTemplates
         ], static fn (string $s): bool => $s !== '');
     }
 
+    /**
+     * Handles the phpArchitect operation.
+     */
     private static function phpArchitect(ProjectConfig $config): string
     {
         $framework     = $config->framework;
@@ -115,6 +121,9 @@ final class AgentTemplates
         MD;
     }
 
+    /**
+     * Handles the testWriter operation.
+     */
     private static function testWriter(ProjectConfig $config): string
     {
         $framework         = $config->testingFramework;
@@ -202,6 +211,9 @@ final class AgentTemplates
         MD;
     }
 
+    /**
+     * Handles the refactorAgent operation.
+     */
     private static function refactorAgent(ProjectConfig $config): string
     {
         $rectorVersion = $config->rectorVersion;
@@ -264,6 +276,9 @@ final class AgentTemplates
         MD;
     }
 
+    /**
+     * Handles the symfonyUpgrader operation.
+     */
     private static function symfonyUpgrader(ProjectConfig $config): string
     {
         if (!$config->isUpgrading) {
@@ -271,7 +286,7 @@ final class AgentTemplates
         }
 
         $from = $config->upgradeFromVersion ?? '6.4';
-        $to   = $config->frameworkVersion ?? '7.2';
+        $to   = $config->frameworkVersion ?? '8.0';
 
         return <<<MD
         ---
@@ -333,6 +348,9 @@ final class AgentTemplates
         MD;
     }
 
+    /**
+     * Handles the doctrineExpert operation.
+     */
     private static function doctrineExpert(ProjectConfig $config): string
     {
         if (!$config->hasDoctrine) {
@@ -380,6 +398,9 @@ final class AgentTemplates
         MD;
     }
 
+    /**
+     * Handles the securityAuditor operation.
+     */
     private static function securityAuditor(ProjectConfig $config): string
     {
         $apiHint = $config->hasApi
@@ -414,6 +435,9 @@ final class AgentTemplates
         MD;
     }
 
+    /**
+     * Handles the performancePhp operation.
+     */
     private static function performancePhp(ProjectConfig $config): string
     {
         return <<<MD
@@ -438,6 +462,9 @@ final class AgentTemplates
         MD;
     }
 
+    /**
+     * Handles the laravelExpert operation.
+     */
     private static function laravelExpert(ProjectConfig $config): string
     {
         if ($config->framework !== 'laravel') {

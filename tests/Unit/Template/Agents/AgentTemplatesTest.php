@@ -9,9 +9,15 @@ use NowoTech\ClaudePhpSetup\Template\Agents\AgentTemplates;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Represents the AgentTemplatesTest class.
+ */
 final class AgentTemplatesTest extends TestCase
 {
     #[Test]
+    /**
+     * Handles the itRendersAllAgentTemplatesWithFullConfig operation.
+     */
     public function itRendersAllAgentTemplatesWithFullConfig(): void
     {
         $config                     = new ProjectConfig();
@@ -40,6 +46,9 @@ final class AgentTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversArchitectureAndFrameworkBranches operation.
+     */
     public function itCoversArchitectureAndFrameworkBranches(): void
     {
         $hex                    = new ProjectConfig();
@@ -59,6 +68,9 @@ final class AgentTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversSymfonyUpgraderWhenNotUpgrading operation.
+     */
     public function itCoversSymfonyUpgraderWhenNotUpgrading(): void
     {
         $config              = new ProjectConfig();
@@ -68,6 +80,9 @@ final class AgentTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversDoctrineExpertWhenNoDoctrine operation.
+     */
     public function itCoversDoctrineExpertWhenNoDoctrine(): void
     {
         $config              = new ProjectConfig();
@@ -77,6 +92,9 @@ final class AgentTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itOmitsLaravelExpertWhenNotLaravel operation.
+     */
     public function itOmitsLaravelExpertWhenNotLaravel(): void
     {
         $config            = new ProjectConfig();
@@ -86,6 +104,9 @@ final class AgentTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversTestWriterPestOnly operation.
+     */
     public function itCoversTestWriterPestOnly(): void
     {
         $config                   = new ProjectConfig();
@@ -96,6 +117,9 @@ final class AgentTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversTestWriterLaravelContext operation.
+     */
     public function itCoversTestWriterLaravelContext(): void
     {
         $config                   = new ProjectConfig();
@@ -106,6 +130,9 @@ final class AgentTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversSecurityAuditorApiHint operation.
+     */
     public function itCoversSecurityAuditorApiHint(): void
     {
         $config         = new ProjectConfig();

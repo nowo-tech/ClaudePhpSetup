@@ -9,9 +9,15 @@ use NowoTech\ClaudePhpSetup\Template\Skills\SkillTemplates;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Represents the SkillTemplatesTest class.
+ */
 final class SkillTemplatesTest extends TestCase
 {
     #[Test]
+    /**
+     * Handles the itRendersCoreSkills operation.
+     */
     public function itRendersCoreSkills(): void
     {
         $config                            = new ProjectConfig();
@@ -38,6 +44,9 @@ final class SkillTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itOmitsTestingSkillWhenNoTests operation.
+     */
     public function itOmitsTestingSkillWhenNoTests(): void
     {
         $config                   = new ProjectConfig();
@@ -47,6 +56,9 @@ final class SkillTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversPhpQualityRunnerBranches operation.
+     */
     public function itCoversPhpQualityRunnerBranches(): void
     {
         $composerOnly                = new ProjectConfig();
@@ -59,6 +71,9 @@ final class SkillTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversPhpTestingFrameworkVariants operation.
+     */
     public function itCoversPhpTestingFrameworkVariants(): void
     {
         $pest                   = new ProjectConfig();

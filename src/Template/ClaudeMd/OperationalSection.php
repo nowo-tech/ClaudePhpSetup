@@ -9,8 +9,14 @@ use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 /**
  * Docker, CI, API hardening, observability, and MCP — optional CLAUDE.md sections.
  */
+/**
+ * Represents the OperationalSection class.
+ */
 final class OperationalSection
 {
+    /**
+     * Handles the render operation.
+     */
     public static function render(ProjectConfig $config): string
     {
         $blocks = [];
@@ -42,6 +48,9 @@ final class OperationalSection
         return "## Delivery, operations & security\n\n" . implode("\n\n", $blocks);
     }
 
+    /**
+     * Handles the dockerBlock operation.
+     */
     private static function dockerBlock(): string
     {
         return <<<'MD'
@@ -55,6 +64,9 @@ final class OperationalSection
         MD;
     }
 
+    /**
+     * Handles the ciBlock operation.
+     */
     private static function ciBlock(): string
     {
         return <<<'MD'
@@ -68,6 +80,9 @@ final class OperationalSection
         MD;
     }
 
+    /**
+     * Handles the apiSecurityBlock operation.
+     */
     private static function apiSecurityBlock(ProjectConfig $config): string
     {
         $style = match ($config->apiStyle) {
@@ -89,6 +104,9 @@ final class OperationalSection
         MD;
     }
 
+    /**
+     * Handles the observabilityBlock operation.
+     */
     private static function observabilityBlock(): string
     {
         return <<<'MD'
@@ -102,6 +120,9 @@ final class OperationalSection
         MD;
     }
 
+    /**
+     * Handles the mcpBlock operation.
+     */
     private static function mcpBlock(): string
     {
         return <<<'MD'

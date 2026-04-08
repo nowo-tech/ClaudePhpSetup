@@ -16,12 +16,18 @@ use function in_array;
 use const STDIN;
 use const STDOUT;
 
+/**
+ * Represents the FileGeneratorTest class.
+ */
 final class FileGeneratorTest extends TestCase
 {
     private string $tmpDir;
     private FileGenerator $generator;
     private Console $console;
 
+    /**
+     * Handles the setUp operation.
+     */
     protected function setUp(): void
     {
         $this->tmpDir = sys_get_temp_dir() . '/claude-php-setup-gen-test-' . uniqid();
@@ -32,12 +38,18 @@ final class FileGeneratorTest extends TestCase
         $this->generator = new FileGenerator($this->console);
     }
 
+    /**
+     * Handles the tearDown operation.
+     */
     protected function tearDown(): void
     {
         $this->removeDir($this->tmpDir);
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesClaudeMd operation.
+     */
     public function itGeneratesClaudeMd(): void
     {
         $config                   = $this->makeConfig();
@@ -53,6 +65,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesCommandFiles operation.
+     */
     public function itGeneratesCommandFiles(): void
     {
         $config                   = $this->makeConfig();
@@ -69,6 +84,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesAgentFiles operation.
+     */
     public function itGeneratesAgentFiles(): void
     {
         $config                   = $this->makeConfig();
@@ -85,6 +103,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesSkillFiles operation.
+     */
     public function itGeneratesSkillFiles(): void
     {
         $config                   = $this->makeConfig();
@@ -102,6 +123,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesExamplesFolder operation.
+     */
     public function itGeneratesExamplesFolder(): void
     {
         $config                   = $this->makeConfig();
@@ -119,6 +143,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itRunsExamplesGenerationWhenDirectoriesAlreadyExist operation.
+     */
     public function itRunsExamplesGenerationWhenDirectoriesAlreadyExist(): void
     {
         $config                    = $this->makeConfig();
@@ -136,6 +163,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itUsesAbsolutePathsInLogWhenProjectDirNotUnderCwd operation.
+     */
     public function itUsesAbsolutePathsInLogWhenProjectDirNotUnderCwd(): void
     {
         $cwd = getcwd();
@@ -160,6 +190,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itSkipsExistingFilesWhenOverwriteIsFalse operation.
+     */
     public function itSkipsExistingFilesWhenOverwriteIsFalse(): void
     {
         $claudeMdPath = $this->tmpDir . '/CLAUDE.md';
@@ -177,6 +210,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itOverwritesExistingFilesWhenOverwriteIsTrue operation.
+     */
     public function itOverwritesExistingFilesWhenOverwriteIsTrue(): void
     {
         $claudeMdPath = $this->tmpDir . '/CLAUDE.md';
@@ -196,6 +232,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCreatesCommandsDirectoryIfMissing operation.
+     */
     public function itCreatesCommandsDirectoryIfMissing(): void
     {
         $config                   = $this->makeConfig();
@@ -212,6 +251,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itSkipsAgentWhenTemplateIsEmpty operation.
+     */
     public function itSkipsAgentWhenTemplateIsEmpty(): void
     {
         $config                   = $this->makeConfig();
@@ -227,6 +269,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itSkipsSkillWhenTemplateIsEmpty operation.
+     */
     public function itSkipsSkillWhenTemplateIsEmpty(): void
     {
         $config                   = $this->makeConfig();
@@ -244,6 +289,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDedentNormalisesIndentedBlocks operation.
+     */
     public function itDedentNormalisesIndentedBlocks(): void
     {
         $console   = new Console(STDIN, fopen('/dev/null', 'w') ?: STDOUT);
@@ -265,6 +313,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itSkipsUnknownCommandKeys operation.
+     */
     public function itSkipsUnknownCommandKeys(): void
     {
         $config                   = $this->makeConfig();
@@ -280,6 +331,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itUsesRelativePathsWhenUnderCurrentWorkingDirectory operation.
+     */
     public function itUsesRelativePathsWhenUnderCurrentWorkingDirectory(): void
     {
         $cwd = getcwd();
@@ -304,6 +358,9 @@ final class FileGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDedentsHeredocContentInGeneratedFiles operation.
+     */
     public function itDedentsHeredocContentInGeneratedFiles(): void
     {
         $config                   = $this->makeConfig();
@@ -320,6 +377,9 @@ final class FileGeneratorTest extends TestCase
         }
     }
 
+    /**
+     * Handles the makeConfig operation.
+     */
     private function makeConfig(): ProjectConfig
     {
         $config                   = new ProjectConfig();
@@ -332,6 +392,9 @@ final class FileGeneratorTest extends TestCase
         return $config;
     }
 
+    /**
+     * Handles the removeDir operation.
+     */
     private function removeDir(string $dir): void
     {
         if (!is_dir($dir)) {

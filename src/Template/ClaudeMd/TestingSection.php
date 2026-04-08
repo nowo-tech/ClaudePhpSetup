@@ -8,8 +8,14 @@ use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
 use function in_array;
 
+/**
+ * Represents the TestingSection class.
+ */
 final class TestingSection
 {
+    /**
+     * Handles the render operation.
+     */
     public static function render(ProjectConfig $config): string
     {
         if ($config->testingFramework === 'none') {
@@ -35,6 +41,9 @@ final class TestingSection
         return implode("\n\n", $sections);
     }
 
+    /**
+     * Handles the phpUnit operation.
+     */
     private static function phpUnit(ProjectConfig $config): string
     {
         $runner = in_array($config->commandRunner, ['make', 'both'], true) ? 'make' : 'composer';
@@ -75,6 +84,9 @@ final class TestingSection
         MD;
     }
 
+    /**
+     * Handles the pest operation.
+     */
     private static function pest(ProjectConfig $config): string
     {
         $runner = in_array($config->commandRunner, ['make', 'both'], true) ? 'make' : 'composer';
@@ -115,6 +127,9 @@ final class TestingSection
         MD;
     }
 
+    /**
+     * Handles the generalPrinciples operation.
+     */
     private static function generalPrinciples(ProjectConfig $config): string
     {
         $architectureTest = '';
@@ -148,6 +163,9 @@ final class TestingSection
         MD;
     }
 
+    /**
+     * Handles the doctrine operation.
+     */
     private static function doctrine(): string
     {
         return <<<'MD'

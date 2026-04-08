@@ -12,6 +12,9 @@ use function is_array;
 /**
  * Auto-detects project configuration from composer.json and filesystem.
  */
+/**
+ * Represents the ProjectDetector class.
+ */
 final class ProjectDetector
 {
     private const FRAMEWORK_MAP = [
@@ -29,6 +32,9 @@ final class ProjectDetector
         'vincentlanglet/twig-cs-fixer' => 'twigCsFixer',
     ];
 
+    /**
+     * Handles the detect operation.
+     */
     public function detect(string $projectDir): ProjectConfig
     {
         $config             = new ProjectConfig();
@@ -174,6 +180,9 @@ final class ProjectDetector
         }
     }
 
+    /**
+     * Handles the detectCommandRunner operation.
+     */
     private function detectCommandRunner(ProjectConfig $config, string $projectDir): void
     {
         $hasMakefile = file_exists($projectDir . '/Makefile')
@@ -182,6 +191,9 @@ final class ProjectDetector
         $config->commandRunner = $hasMakefile ? 'both' : 'composer';
     }
 
+    /**
+     * Handles the detectDocker operation.
+     */
     private function detectDocker(ProjectConfig $config, string $projectDir): void
     {
         $root              = rtrim($projectDir, '/');
@@ -192,6 +204,9 @@ final class ProjectDetector
             || file_exists($root . '/Dockerfile');
     }
 
+    /**
+     * Handles the detectCi operation.
+     */
     private function detectCi(ProjectConfig $config, string $projectDir): void
     {
         $workflows = rtrim($projectDir, '/') . '/.github/workflows';
@@ -215,6 +230,9 @@ final class ProjectDetector
         $config->rectorVersion = str_contains($rectorConstraint, '^1') || str_contains($rectorConstraint, '1.') ? '1' : '2';
     }
 
+    /**
+     * Handles the detectPhpStanLevel operation.
+     */
     private function detectPhpStanLevel(ProjectConfig $config, string $projectDir): void
     {
         if (!$config->hasPhpStan) {
@@ -259,6 +277,9 @@ final class ProjectDetector
         return is_array($data) ? $data : null;
     }
 
+    /**
+     * Handles the extractMajorMinorVersion operation.
+     */
     private function extractMajorMinorVersion(string $constraint): ?string
     {
         // Handles: ^6.4, >=6.4, ~6.4, 6.4.*, 6.4

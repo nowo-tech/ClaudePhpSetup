@@ -9,8 +9,14 @@ use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 use function count;
 use function in_array;
 
+/**
+ * Represents the BaseSection class.
+ */
 final class BaseSection
 {
+    /**
+     * Handles the header operation.
+     */
     public static function header(ProjectConfig $config): string
     {
         $name = $config->projectName ?? 'Project';
@@ -21,6 +27,9 @@ final class BaseSection
         MD;
     }
 
+    /**
+     * Handles the stack operation.
+     */
     public static function stack(ProjectConfig $config): string
     {
         $lines   = ['## Stack', ''];
@@ -96,6 +105,9 @@ final class BaseSection
     /**
      * Lists generated Claude Code assets (paths) so the model knows what exists under `.claude/`.
      */
+    /**
+     * Handles the generatedClaudeResources operation.
+     */
     public static function generatedClaudeResources(ProjectConfig $config): string
     {
         $hasAny = $config->generateClaudeMd
@@ -142,6 +154,9 @@ final class BaseSection
         return implode("\n", $lines);
     }
 
+    /**
+     * Handles the commands operation.
+     */
     public static function commands(ProjectConfig $config): string
     {
         $isMake = in_array($config->commandRunner, ['make', 'both'], true);
@@ -181,6 +196,9 @@ final class BaseSection
         return implode("\n", $lines);
     }
 
+    /**
+     * Handles the phpBestPractices operation.
+     */
     public static function phpBestPractices(): string
     {
         return <<<'MD'
@@ -199,6 +217,9 @@ final class BaseSection
         MD;
     }
 
+    /**
+     * Handles the codeReviewGuidelines operation.
+     */
     public static function codeReviewGuidelines(ProjectConfig $config): string
     {
         unset($config); // config reserved for future framework-specific guidelines

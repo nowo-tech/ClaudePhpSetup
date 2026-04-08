@@ -6,8 +6,14 @@ namespace NowoTech\ClaudePhpSetup\Template\ClaudeMd;
 
 use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
+/**
+ * Represents the FrameworkSection class.
+ */
 final class FrameworkSection
 {
+    /**
+     * Handles the render operation.
+     */
     public static function render(ProjectConfig $config): string
     {
         return match ($config->framework) {
@@ -18,6 +24,9 @@ final class FrameworkSection
         };
     }
 
+    /**
+     * Handles the symfony operation.
+     */
     private static function symfony(ProjectConfig $config): string
     {
         $version      = $config->frameworkVersion ?? '7.x';
@@ -77,6 +86,9 @@ final class FrameworkSection
         MD;
     }
 
+    /**
+     * Handles the laravel operation.
+     */
     private static function laravel(ProjectConfig $config): string
     {
         $version = $config->frameworkVersion ?? '11';
@@ -131,6 +143,9 @@ final class FrameworkSection
         MD;
     }
 
+    /**
+     * Handles the slim operation.
+     */
     private static function slim(): string
     {
         return <<<'MD'

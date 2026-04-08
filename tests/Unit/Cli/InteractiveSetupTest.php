@@ -17,12 +17,18 @@ use function in_array;
 
 use const JSON_THROW_ON_ERROR;
 
+/**
+ * Represents the InteractiveSetupTest class.
+ */
 final class InteractiveSetupTest extends TestCase
 {
     use MemoryStreamTrait;
 
     private string $tmpDir;
 
+    /**
+     * Handles the setUp operation.
+     */
     protected function setUp(): void
     {
         $this->tmpDir = sys_get_temp_dir() . '/claude-php-setup-interactive-' . uniqid();
@@ -33,12 +39,18 @@ final class InteractiveSetupTest extends TestCase
         );
     }
 
+    /**
+     * Handles the tearDown operation.
+     */
     protected function tearDown(): void
     {
         $this->removeDir($this->tmpDir);
     }
 
     #[Test]
+    /**
+     * Handles the itRunsWizardAndGeneratesFiles operation.
+     */
     public function itRunsWizardAndGeneratesFiles(): void
     {
         $stdin = $this->memoryStream('r+');
@@ -62,6 +74,9 @@ final class InteractiveSetupTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itAbortsWhenUserDeclinesGeneration operation.
+     */
     public function itAbortsWhenUserDeclinesGeneration(): void
     {
         $stdin = $this->memoryStream('r+');
@@ -86,6 +101,9 @@ final class InteractiveSetupTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itSetsOverwriteWhenForceFlag operation.
+     */
     public function itSetsOverwriteWhenForceFlag(): void
     {
         file_put_contents($this->tmpDir . '/CLAUDE.md', 'old');
@@ -108,6 +126,9 @@ final class InteractiveSetupTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesAgentsWhenSelectedInWizard operation.
+     */
     public function itGeneratesAgentsWhenSelectedInWizard(): void
     {
         $stdin = $this->memoryStream('r+');
@@ -128,6 +149,9 @@ final class InteractiveSetupTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itShowsPreviewForCommandsAndAgentsWhenPathsExist operation.
+     */
     public function itShowsPreviewForCommandsAndAgentsWhenPathsExist(): void
     {
         mkdir($this->tmpDir . '/.claude/commands', 0755, true);
@@ -158,6 +182,9 @@ final class InteractiveSetupTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCreateFactoryBuildsInstance operation.
+     */
     public function itCreateFactoryBuildsInstance(): void
     {
         InteractiveSetup::create();
@@ -165,6 +192,9 @@ final class InteractiveSetupTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itLogsDetectedProjectNameWhenPresent operation.
+     */
     public function itLogsDetectedProjectNameWhenPresent(): void
     {
         file_put_contents(
@@ -194,6 +224,9 @@ final class InteractiveSetupTest extends TestCase
         self::assertStringContainsString('vendor/pkg', $out);
     }
 
+    /**
+     * Handles the removeDir operation.
+     */
     private function removeDir(string $dir): void
     {
         if (!is_dir($dir)) {

@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] — 2026-04-08
+
+### Added
+
+- Interactive single-choice navigation now supports `↑`/`↓` + Enter in TTY terminals (numeric selection is still supported).
+
+### Changed
+
+- Symfony wizard versions expanded to include `7.3`, `7.4`, and `8.0`.
+- Symfony upgrade flow now asks for **current version** first and then a **higher target version** (`upgrading to`), avoiding confusing downgrade-looking prompts.
+- Added English PHPDoc comments across `src/` and `tests/` classes/methods where missing.
+
 ## [1.1.1] — 2026-04-08
 
 ### Fixed
@@ -56,5 +68,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--dir` flag to target a custom project directory
 - Heredoc dedentation — source code indented templates produce clean output
 
+[1.1.2]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.2
 [1.1.1]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.1
 [1.1.0]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.0

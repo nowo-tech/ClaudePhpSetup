@@ -6,8 +6,14 @@ namespace NowoTech\ClaudePhpSetup\Template\ClaudeMd;
 
 use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
+/**
+ * Represents the UpgradeSection class.
+ */
 final class UpgradeSection
 {
+    /**
+     * Handles the render operation.
+     */
     public static function render(ProjectConfig $config): string
     {
         if (!$config->isUpgrading || $config->framework !== 'symfony') {
@@ -15,7 +21,7 @@ final class UpgradeSection
         }
 
         $from     = $config->upgradeFromVersion ?? '6.4';
-        $to       = $config->frameworkVersion ?? '7.2';
+        $to       = $config->frameworkVersion ?? '8.0';
         $fromSet  = self::setName($from);
         $toSet    = self::setName($to);
         $breaking = self::breakingChanges($from, $to);
@@ -91,11 +97,17 @@ final class UpgradeSection
         MD;
     }
 
+    /**
+     * Handles the setName operation.
+     */
     private static function setName(string $version): string
     {
         return str_replace('.', '_', $version);
     }
 
+    /**
+     * Handles the breakingChanges operation.
+     */
     private static function breakingChanges(string $from, string $to): string
     {
         $fromMajor = (int) explode('.', $from)[0];

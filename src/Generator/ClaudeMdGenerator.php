@@ -14,8 +14,14 @@ use NowoTech\ClaudePhpSetup\Template\ClaudeMd\TestingSection;
 use NowoTech\ClaudePhpSetup\Template\ClaudeMd\TwigSection;
 use NowoTech\ClaudePhpSetup\Template\ClaudeMd\UpgradeSection;
 
+/**
+ * Represents the ClaudeMdGenerator class.
+ */
 final class ClaudeMdGenerator
 {
+    /**
+     * Handles the generate operation.
+     */
     public function generate(ProjectConfig $config): string
     {
         $sections = [];

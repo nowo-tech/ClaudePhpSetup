@@ -103,7 +103,7 @@ The wizard auto-detects your stack from `composer.json` and pre-fills answers. Y
 ── Project Settings ──
   ? PHP version: [8.3]
   ? Framework: [symfony]
-  ? Symfony version: [7.2]
+  ? Current Symfony version: [8.0]
   ? Are you upgrading Symfony? [N]
 
 ── Quality Tools ──
@@ -144,6 +144,12 @@ The wizard reads your `composer.json` and detects:
 - **Rector version** (1.x vs 2.x)
 - **PHPStan level** from `phpstan.neon`
 - **Makefile** presence for command runner detection
+
+## Prompt navigation
+
+- Single-choice prompts support both:
+  - arrow keys (`↑` / `↓`) + `Enter` in interactive terminals
+  - numeric input (`1`, `2`, `3`, ...)
 
 ## Related packages
 

@@ -16,6 +16,16 @@
 
 ## Version-specific notes
 
+### 1.1.1 → 1.1.2
+
+- No breaking changes.
+- Symfony choices now include `7.3`, `7.4`, and `8.0`.
+- Symfony upgrade prompt flow changed to:
+  1. `Current Symfony version`
+  2. `Are you upgrading Symfony to a newer version?`
+  3. `Upgrading to which Symfony version?` (only higher versions are offered)
+- In interactive terminals, single-choice prompts now support arrow navigation (`↑`/`↓` + Enter) in addition to numeric input.
+
 ### 1.1.0 → 1.1.1
 
 - No breaking changes.

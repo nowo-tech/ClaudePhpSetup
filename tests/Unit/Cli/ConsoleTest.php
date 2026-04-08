@@ -10,11 +10,17 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
+/**
+ * Represents the ConsoleTest class.
+ */
 final class ConsoleTest extends TestCase
 {
     use MemoryStreamTrait;
 
     #[Test]
+    /**
+     * Handles the itWritesLinesAndSuccess operation.
+     */
     public function itWritesLinesAndSuccess(): void
     {
         $out     = $this->memoryStream('w+');
@@ -26,6 +32,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itWritesSectionInfoWarningAndUsesWrite operation.
+     */
     public function itWritesSectionInfoWarningAndUsesWrite(): void
     {
         $out     = $this->memoryStream('w+');
@@ -42,6 +51,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itChoiceReturnsDefaultWhenEmpty operation.
+     */
     public function itChoiceReturnsDefaultWhenEmpty(): void
     {
         $in = $this->memoryStream('r+');
@@ -52,6 +64,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itChoiceReturnsFirstWhenDefaultEmptyAndAnswerEmpty operation.
+     */
     public function itChoiceReturnsFirstWhenDefaultEmptyAndAnswerEmpty(): void
     {
         $in = $this->memoryStream('r+');
@@ -62,6 +77,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itChoiceReturnsByNumericIndex operation.
+     */
     public function itChoiceReturnsByNumericIndex(): void
     {
         $in = $this->memoryStream('r+');
@@ -72,6 +90,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itChoiceReturnsTypedValue operation.
+     */
     public function itChoiceReturnsTypedValue(): void
     {
         $in = $this->memoryStream('r+');
@@ -82,6 +103,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itChoiceFallsBackWhenInvalid operation.
+     */
     public function itChoiceFallsBackWhenInvalid(): void
     {
         $in = $this->memoryStream('r+');
@@ -92,6 +116,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itConfirmReturnsDefaultWhenEmpty operation.
+     */
     public function itConfirmReturnsDefaultWhenEmpty(): void
     {
         $in = $this->memoryStream('r+');
@@ -107,6 +134,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itConfirmParsesYes operation.
+     */
     public function itConfirmParsesYes(): void
     {
         $in = $this->memoryStream('r+');
@@ -117,6 +147,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itMultiselectReturnsDefaultsOrAllKeysWhenEmptyOrAll operation.
+     */
     public function itMultiselectReturnsDefaultsOrAllKeysWhenEmptyOrAll(): void
     {
         $choices = ['a' => 'A', 'b' => 'B'];
@@ -134,6 +167,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itMultiselectParsesCommaSeparated operation.
+     */
     public function itMultiselectParsesCommaSeparated(): void
     {
         $choices = ['a' => 'A', 'b' => 'B', 'c' => 'C'];
@@ -145,6 +181,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itMultiselectFallsBackToDefaultsWhenNothingSelected operation.
+     */
     public function itMultiselectFallsBackToDefaultsWhenNothingSelected(): void
     {
         $choices = ['a' => 'A'];
@@ -156,6 +195,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itAskReturnsDefaultWhenEmpty operation.
+     */
     public function itAskReturnsDefaultWhenEmpty(): void
     {
         $in = $this->memoryStream('r+');
@@ -166,6 +208,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itAskReturnsTrimmedAnswer operation.
+     */
     public function itAskReturnsTrimmedAnswer(): void
     {
         $in = $this->memoryStream('r+');
@@ -176,6 +221,9 @@ final class ConsoleTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itReadLineReturnsEmptyWhenFgetsHitsEof operation.
+     */
     public function itReadLineReturnsEmptyWhenFgetsHitsEof(): void
     {
         $in = $this->memoryStream('r+');

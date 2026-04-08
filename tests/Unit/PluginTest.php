@@ -15,9 +15,15 @@ use NowoTech\ClaudePhpSetup\Plugin;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Represents the PluginTest class.
+ */
 final class PluginTest extends TestCase
 {
     #[Test]
+    /**
+     * Handles the itImplementsComposerPluginAndEventSubscriberInterfaces operation.
+     */
     public function itImplementsComposerPluginAndEventSubscriberInterfaces(): void
     {
         $implements = class_implements(new Plugin());
@@ -26,6 +32,9 @@ final class PluginTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itSubscribesToPostInstallAndPostUpdateEvents operation.
+     */
     public function itSubscribesToPostInstallAndPostUpdateEvents(): void
     {
         $events = Plugin::getSubscribedEvents();
@@ -35,6 +44,9 @@ final class PluginTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itActivatesWithoutError operation.
+     */
     public function itActivatesWithoutError(): void
     {
         $plugin   = new Plugin();
@@ -48,6 +60,9 @@ final class PluginTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDeactivatesWithoutError operation.
+     */
     public function itDeactivatesWithoutError(): void
     {
         $plugin   = new Plugin();
@@ -60,6 +75,9 @@ final class PluginTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itUninstallsWithoutError operation.
+     */
     public function itUninstallsWithoutError(): void
     {
         $plugin   = new Plugin();
@@ -72,6 +90,9 @@ final class PluginTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itNotifiesOnPostInstallWhenBinExistsUnderVendor operation.
+     */
     public function itNotifiesOnPostInstallWhenBinExistsUnderVendor(): void
     {
         $tmp       = sys_get_temp_dir() . '/claude-plugin-' . uniqid();
@@ -99,6 +120,9 @@ final class PluginTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itNotifiesOnPostUpdateWhenBinPathMissing operation.
+     */
     public function itNotifiesOnPostUpdateWhenBinPathMissing(): void
     {
         $tmp       = sys_get_temp_dir() . '/claude-plugin-' . uniqid();

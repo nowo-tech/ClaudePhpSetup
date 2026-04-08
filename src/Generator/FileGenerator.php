@@ -21,18 +21,27 @@ use const PHP_INT_MAX;
 /**
  * Orchestrates file generation based on ProjectConfig.
  */
+/**
+ * Represents the FileGenerator class.
+ */
 final class FileGenerator
 {
     private int $created     = 0;
     private int $skipped     = 0;
     private int $overwritten = 0;
 
+    /**
+     * Handles the __construct operation.
+     */
     public function __construct(
         private readonly Console $console,
         private readonly ClaudeMdGenerator $claudeMdGenerator = new ClaudeMdGenerator(),
     ) {
     }
 
+    /**
+     * Handles the generate operation.
+     */
     public function generate(ProjectConfig $config): void
     {
         $this->created     = 0;
@@ -69,6 +78,9 @@ final class FileGenerator
         ));
     }
 
+    /**
+     * Handles the generateClaudeMd operation.
+     */
     private function generateClaudeMd(ProjectConfig $config): void
     {
         $path    = rtrim($config->projectDir, '/') . '/CLAUDE.md';
@@ -76,6 +88,9 @@ final class FileGenerator
         $this->writeFile($path, $content, $config->overwriteExisting);
     }
 
+    /**
+     * Handles the generateCommands operation.
+     */
     private function generateCommands(ProjectConfig $config): void
     {
         $commandsDir = rtrim($config->projectDir, '/') . '/.claude/commands';
@@ -94,6 +109,9 @@ final class FileGenerator
         }
     }
 
+    /**
+     * Handles the generateAgents operation.
+     */
     private function generateAgents(ProjectConfig $config): void
     {
         $agentsDir = rtrim($config->projectDir, '/') . '/.claude/agents';
@@ -112,6 +130,9 @@ final class FileGenerator
         }
     }
 
+    /**
+     * Handles the generateSkills operation.
+     */
     private function generateSkills(ProjectConfig $config): void
     {
         $skillsRoot = rtrim($config->projectDir, '/') . '/.claude/skills';
@@ -131,6 +152,9 @@ final class FileGenerator
         }
     }
 
+    /**
+     * Handles the generateExamples operation.
+     */
     private function generateExamples(ProjectConfig $config): void
     {
         $allTemplates = ExampleTemplates::all($config);
@@ -142,6 +166,9 @@ final class FileGenerator
         }
     }
 
+    /**
+     * Handles the writeFile operation.
+     */
     private function writeFile(string $path, string $content, bool $overwrite): void
     {
         $relativePath = $this->relativePath($path);
@@ -166,6 +193,9 @@ final class FileGenerator
         file_put_contents($path, $content . PHP_EOL);
     }
 
+    /**
+     * Handles the ensureDirectory operation.
+     */
     private function ensureDirectory(string $dir): void
     {
         if (!is_dir($dir)) {
@@ -173,6 +203,9 @@ final class FileGenerator
         }
     }
 
+    /**
+     * Handles the relativePath operation.
+     */
     private function relativePath(string $absolutePath): string
     {
         $cwd = getcwd();
@@ -186,6 +219,9 @@ final class FileGenerator
     /**
      * Remove common leading whitespace from heredoc strings.
      * This allows indented heredocs in source code while outputting clean markdown.
+     */
+    /**
+     * Handles the dedent operation.
      */
     private function dedent(string $content): string
     {

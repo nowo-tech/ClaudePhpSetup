@@ -8,8 +8,14 @@ use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
 use function in_array;
 
+/**
+ * Represents the TwigSection class.
+ */
 final class TwigSection
 {
+    /**
+     * Handles the render operation.
+     */
     public static function render(ProjectConfig $config): string
     {
         if (!$config->hasTwig) {
@@ -56,6 +62,9 @@ final class TwigSection
         MD;
     }
 
+    /**
+     * Handles the symfonyTwig operation.
+     */
     private static function symfonyTwig(): string
     {
         return <<<'MD'
@@ -79,6 +88,9 @@ final class TwigSection
         MD;
     }
 
+    /**
+     * Handles the runner operation.
+     */
     private static function runner(ProjectConfig $config): string
     {
         return in_array($config->commandRunner, ['make', 'both'], true) ? 'make' : 'composer';

@@ -11,23 +11,38 @@ use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
 
+/**
+ * Represents the Plugin class.
+ */
 final class Plugin implements PluginInterface, EventSubscriberInterface
 {
     private Composer $composer;
 
+    /**
+     * Handles the activate operation.
+     */
     public function activate(Composer $composer, IOInterface $io): void
     {
         $this->composer = $composer;
     }
 
+    /**
+     * Handles the deactivate operation.
+     */
     public function deactivate(Composer $composer, IOInterface $io): void
     {
     }
 
+    /**
+     * Handles the uninstall operation.
+     */
     public function uninstall(Composer $composer, IOInterface $io): void
     {
     }
 
+    /**
+     * Handles the getSubscribedEvents operation.
+     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -36,16 +51,25 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
         ];
     }
 
+    /**
+     * Handles the onPostInstall operation.
+     */
     public function onPostInstall(Event $event): void
     {
         $this->notifySetup($event->getIO());
     }
 
+    /**
+     * Handles the onPostUpdate operation.
+     */
     public function onPostUpdate(Event $event): void
     {
         $this->notifySetup($event->getIO());
     }
 
+    /**
+     * Handles the notifySetup operation.
+     */
     private function notifySetup(IOInterface $io): void
     {
         $vendorDir = $this->composer->getConfig()->get('vendor-dir');

@@ -17,9 +17,15 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Represents the MarkdownTemplatesTest class.
+ */
 final class MarkdownTemplatesTest extends TestCase
 {
     #[Test]
+    /**
+     * Handles the itCoversFrameworkSectionVariants operation.
+     */
     public function itCoversFrameworkSectionVariants(): void
     {
         $symfonyOld                   = new ProjectConfig();
@@ -47,6 +53,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversQualityToolsSection operation.
+     */
     public function itCoversQualityToolsSection(): void
     {
         $full                   = new ProjectConfig();
@@ -80,6 +89,9 @@ final class MarkdownTemplatesTest extends TestCase
 
     #[Test]
     #[DataProvider('phpStanLevelProvider')]
+    /**
+     * Handles the itCoversPhpStanLevelDescriptions operation.
+     */
     public function itCoversPhpStanLevelDescriptions(string $level): void
     {
         $config                = new ProjectConfig();
@@ -110,6 +122,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversTestingSection operation.
+     */
     public function itCoversTestingSection(): void
     {
         $none                   = new ProjectConfig();
@@ -136,6 +151,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversTwigSection operation.
+     */
     public function itCoversTwigSection(): void
     {
         $twig                 = new ProjectConfig();
@@ -159,6 +177,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversUpgradeSectionBreakingChangeBranches operation.
+     */
     public function itCoversUpgradeSectionBreakingChangeBranches(): void
     {
         $sixToSeven                     = new ProjectConfig();
@@ -189,6 +210,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversBaseSection operation.
+     */
     public function itCoversBaseSection(): void
     {
         $header                     = new ProjectConfig();
@@ -276,6 +300,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversOperationalSection operation.
+     */
     public function itCoversOperationalSection(): void
     {
         $full                            = new ProjectConfig();
@@ -308,6 +335,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversGeneratedClaudeResourcesSection operation.
+     */
     public function itCoversGeneratedClaudeResourcesSection(): void
     {
         $cfg                   = new ProjectConfig();
@@ -334,6 +364,9 @@ final class MarkdownTemplatesTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itCoversDoctrineSection operation.
+     */
     public function itCoversDoctrineSection(): void
     {
         $on              = new ProjectConfig();

@@ -6,8 +6,14 @@ namespace NowoTech\ClaudePhpSetup\Template\ClaudeMd;
 
 use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
+/**
+ * Represents the DoctrineSection class.
+ */
 final class DoctrineSection
 {
+    /**
+     * Handles the render operation.
+     */
     public static function render(ProjectConfig $config): string
     {
         if (!$config->hasDoctrine) {
@@ -29,6 +35,9 @@ final class DoctrineSection
         ```php
         #[ORM\Entity(repositoryClass: UserRepository::class)]
         #[ORM\Table(name: 'users')]
+        /**
+         * Represents the User class.
+         */
         class User
         {
             #[ORM\Id]
@@ -40,6 +49,9 @@ final class DoctrineSection
             private string $email;
 
             // Named constructor — entities should never be constructed with `new`
+            /**
+             * Handles the create operation.
+             */
             public static function create(string $email): self
             {
                 $user = new self();
@@ -48,7 +60,13 @@ final class DoctrineSection
             }
 
             // Getters only — no setters for business properties
+            /**
+             * Handles the getId operation.
+             */
             public function getId(): ?int { return $this->id; }
+            /**
+             * Handles the getEmail operation.
+             */
             public function getEmail(): string { return $this->email; }
         }
         ```

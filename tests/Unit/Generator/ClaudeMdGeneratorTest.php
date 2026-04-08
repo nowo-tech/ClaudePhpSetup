@@ -9,16 +9,25 @@ use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Represents the ClaudeMdGeneratorTest class.
+ */
 final class ClaudeMdGeneratorTest extends TestCase
 {
     private ClaudeMdGenerator $generator;
 
+    /**
+     * Handles the setUp operation.
+     */
     protected function setUp(): void
     {
         $this->generator = new ClaudeMdGenerator();
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesBasicMarkdownForEmptyConfig operation.
+     */
     public function itGeneratesBasicMarkdownForEmptyConfig(): void
     {
         $config              = new ProjectConfig();
@@ -32,6 +41,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesSymfonySection operation.
+     */
     public function itIncludesSymfonySection(): void
     {
         $config                   = new ProjectConfig();
@@ -45,6 +57,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesRectorSection operation.
+     */
     public function itIncludesRectorSection(): void
     {
         $config                = new ProjectConfig();
@@ -58,6 +73,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesPhpStanSection operation.
+     */
     public function itIncludesPhpStanSection(): void
     {
         $config               = new ProjectConfig();
@@ -71,6 +89,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesTestingSection operation.
+     */
     public function itIncludesTestingSection(): void
     {
         $config                   = new ProjectConfig();
@@ -83,6 +104,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesTwigSection operation.
+     */
     public function itIncludesTwigSection(): void
     {
         $config          = new ProjectConfig();
@@ -95,6 +119,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesDoctrineSection operation.
+     */
     public function itIncludesDoctrineSection(): void
     {
         $config              = new ProjectConfig();
@@ -107,6 +134,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesUpgradeSectionWhenUpgrading operation.
+     */
     public function itIncludesUpgradeSectionWhenUpgrading(): void
     {
         $config                     = new ProjectConfig();
@@ -123,6 +153,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itDoesNotIncludeUpgradeSectionWhenNotUpgrading operation.
+     */
     public function itDoesNotIncludeUpgradeSectionWhenNotUpgrading(): void
     {
         $config                   = new ProjectConfig();
@@ -136,6 +169,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itGeneratesCommandsTableWhenToolsConfigured operation.
+     */
     public function itGeneratesCommandsTableWhenToolsConfigured(): void
     {
         $config                = new ProjectConfig();
@@ -151,6 +187,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itUseMakeCommandRunnerInTable operation.
+     */
     public function itUseMakeCommandRunnerInTable(): void
     {
         $config                = new ProjectConfig();
@@ -163,6 +202,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itIncludesOperationalSectionWhenFlagsSet operation.
+     */
     public function itIncludesOperationalSectionWhenFlagsSet(): void
     {
         $config                            = new ProjectConfig();
@@ -181,6 +223,9 @@ final class ClaudeMdGeneratorTest extends TestCase
     }
 
     #[Test]
+    /**
+     * Handles the itListsGeneratedClaudePathsWhenGenerationFlagsSet operation.
+     */
     public function itListsGeneratedClaudePathsWhenGenerationFlagsSet(): void
     {
         $config                   = new ProjectConfig();

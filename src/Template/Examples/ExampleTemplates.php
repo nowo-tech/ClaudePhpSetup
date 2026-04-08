@@ -6,6 +6,9 @@ namespace NowoTech\ClaudePhpSetup\Template\Examples;
 
 use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
+/**
+ * Represents the ExampleTemplates class.
+ */
 final class ExampleTemplates
 {
     /** @return array<string, string> key => relative path under examples/ */
@@ -21,6 +24,9 @@ final class ExampleTemplates
         ];
     }
 
+    /**
+     * Handles the readme operation.
+     */
     private static function readme(ProjectConfig $config): string
     {
         $framework = $config->framework !== 'none' ? $config->framework : 'php';
@@ -47,6 +53,9 @@ final class ExampleTemplates
         MD;
     }
 
+    /**
+     * Handles the featureWorkflow operation.
+     */
     private static function featureWorkflow(): string
     {
         return <<<'MD'
@@ -65,6 +74,9 @@ final class ExampleTemplates
         MD;
     }
 
+    /**
+     * Handles the bugfixWorkflow operation.
+     */
     private static function bugfixWorkflow(): string
     {
         return <<<'MD'
@@ -83,6 +95,9 @@ final class ExampleTemplates
         MD;
     }
 
+    /**
+     * Handles the reviewPrompt operation.
+     */
     private static function reviewPrompt(): string
     {
         return <<<'MD'
@@ -100,6 +115,9 @@ final class ExampleTemplates
         MD;
     }
 
+    /**
+     * Handles the addCommandPrompt operation.
+     */
     private static function addCommandPrompt(): string
     {
         return <<<'MD'
@@ -113,6 +131,9 @@ final class ExampleTemplates
         MD;
     }
 
+    /**
+     * Handles the addAgentSkillPrompt operation.
+     */
     private static function addAgentSkillPrompt(): string
     {
         return <<<'MD'

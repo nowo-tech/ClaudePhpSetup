@@ -12,6 +12,9 @@ use function in_array;
 /**
  * Returns the markdown content for each slash command.
  */
+/**
+ * Represents the CommandTemplates class.
+ */
 final class CommandTemplates
 {
     /** @return array<string, string>  key => markdown content */
@@ -41,6 +44,9 @@ final class CommandTemplates
         ], static fn (string $s): bool => $s !== '');
     }
 
+    /**
+     * Handles the codeReview operation.
+     */
     private static function codeReview(ProjectConfig $config): string
     {
         $toolChecks = [];
@@ -81,6 +87,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the qaGate operation.
+     */
     private static function qaGate(ProjectConfig $config): string
     {
         $hint = match ($config->commandRunner) {
@@ -101,6 +110,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the rectorDry operation.
+     */
     private static function rectorDry(ProjectConfig $config, string $runner): string
     {
         $configNote = $config->rectorVersion === '2'
@@ -128,6 +140,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the rectorRun operation.
+     */
     private static function rectorRun(string $runner): string
     {
         return <<<MD
@@ -154,6 +169,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the phpstan operation.
+     */
     private static function phpstan(ProjectConfig $config, string $runner): string
     {
         return <<<MD
@@ -181,6 +199,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the csFix operation.
+     */
     private static function csFix(string $runner): string
     {
         return <<<MD
@@ -206,6 +227,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the testRun operation.
+     */
     private static function testRun(ProjectConfig $config, string $runner): string
     {
         $framework = $config->testingFramework;
@@ -247,6 +271,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the testWrite operation.
+     */
     private static function testWrite(ProjectConfig $config): string
     {
         $framework = $config->testingFramework;
@@ -265,15 +292,24 @@ final class CommandTemplates
         PHP;
 
         $phpunitExample = <<<'PHP'
+        /**
+         * Represents the UserServiceTest class.
+         */
         final class UserServiceTest extends TestCase
         {
             private UserService $service;
 
+            /**
+             * Handles the setUp operation.
+             */
             protected function setUp(): void
             {
                 $this->service = new UserService(/* mocked deps */);
             }
 
+            /**
+             * Handles the testCreatesUserWithValidEmail operation.
+             */
             public function testCreatesUserWithValidEmail(): void
             {
                 $user = $this->service->create('test@example.com');
@@ -310,6 +346,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the twigReview operation.
+     */
     private static function twigReview(): string
     {
         return <<<'MD'
@@ -333,6 +372,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the makeEntity operation.
+     */
     private static function makeEntity(ProjectConfig $config): string
     {
         if (!$config->hasDoctrine) {
@@ -366,6 +408,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the makeRepository operation.
+     */
     private static function makeRepository(ProjectConfig $config): string
     {
         if (!$config->hasDoctrine) {
@@ -387,11 +432,17 @@ final class CommandTemplates
 
         **Method templates:**
         ```php
+        /**
+         * Handles the findByEmail operation.
+         */
         public function findByEmail(string $email): ?User
         {
             return $this->findOneBy(['email' => $email]);
         }
 
+        /**
+         * Handles the findActiveUsers operation.
+         */
         public function findActiveUsers(): array
         {
             return $this->createQueryBuilder('u')
@@ -402,6 +453,9 @@ final class CommandTemplates
                 ->getResult();
         }
 
+        /**
+         * Handles the countByStatus operation.
+         */
         public function countByStatus(Status $status): int
         {
             return (int) $this->createQueryBuilder('u')
@@ -415,6 +469,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the makeService operation.
+     */
     private static function makeService(ProjectConfig $config): string
     {
         if ($config->framework !== 'symfony') {
@@ -441,8 +498,14 @@ final class CommandTemplates
 
         namespace App\Service;
 
+        /**
+         * Represents the UserRegistrationService class.
+         */
         final class UserRegistrationService
         {
+            /**
+             * Handles the __construct operation.
+             */
             public function __construct(
                 private readonly UserRepository $userRepository,
                 private readonly PasswordHasherInterface $passwordHasher,
@@ -450,6 +513,9 @@ final class CommandTemplates
             ) {
             }
 
+            /**
+             * Handles the register operation.
+             */
             public function register(string $email, string $plainPassword): User
             {
                 if ($this->userRepository->findByEmail($email)) {
@@ -467,6 +533,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the makeCommand operation.
+     */
     private static function makeCommand(ProjectConfig $config): string
     {
         if ($config->framework !== 'symfony') {
@@ -492,19 +561,31 @@ final class CommandTemplates
             name: 'app:send-weekly-report',
             description: 'Sends the weekly report to all active users',
         )]
+        /**
+         * Represents the SendWeeklyReportCommand class.
+         */
         final class SendWeeklyReportCommand extends Command
         {
+            /**
+             * Handles the __construct operation.
+             */
             public function __construct(
                 private readonly WeeklyReportService $reportService,
             ) {
                 parent::__construct();
             }
 
+            /**
+             * Handles the configure operation.
+             */
             protected function configure(): void
             {
                 $this->addOption('dry-run', null, InputOption::VALUE_NONE, 'Preview without sending');
             }
 
+            /**
+             * Handles the execute operation.
+             */
             protected function execute(InputInterface $input, OutputInterface $output): int
             {
                 $io = new SymfonyStyle($input, $output);
@@ -520,6 +601,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the symfonyUpgrade operation.
+     */
     private static function symfonyUpgrade(ProjectConfig $config): string
     {
         if (!$config->isUpgrading) {
@@ -527,7 +611,7 @@ final class CommandTemplates
         }
 
         $from = $config->upgradeFromVersion ?? '6.4';
-        $to   = $config->frameworkVersion ?? '7.2';
+        $to   = $config->frameworkVersion ?? '8.0';
 
         return <<<MD
         Step-by-step guide for upgrading Symfony from {$from} to {$to}.
@@ -578,6 +662,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the grumphpCheck operation.
+     */
     private static function grumphpCheck(string $runner): string
     {
         return <<<MD
@@ -598,6 +685,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the dockerExec operation.
+     */
     private static function dockerExec(ProjectConfig $config): string
     {
         if (!$config->hasDocker) {
@@ -620,6 +710,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the migrationReview operation.
+     */
     private static function migrationReview(ProjectConfig $config): string
     {
         if (!$config->hasDoctrine) {
@@ -639,6 +732,9 @@ final class CommandTemplates
         MD;
     }
 
+    /**
+     * Handles the apiSecurityReview operation.
+     */
     private static function apiSecurityReview(ProjectConfig $config): string
     {
         if (!$config->hasApi) {

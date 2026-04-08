@@ -14,6 +14,9 @@ trait MemoryStreamTrait
     /**
      * @return resource
      */
+    /**
+     * Handles the memoryStream operation.
+     */
     private function memoryStream(string $mode): mixed
     {
         $r = fopen('php://memory', $mode);
