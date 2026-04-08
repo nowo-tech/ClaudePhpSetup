@@ -16,6 +16,15 @@
 
 ## Version-specific notes
 
+### 1.1.0 → 1.1.1
+
+- No breaking changes.
+- This patch ensures `vendor/bin/claude-php-setup` is available after install/update in consumer projects.
+- If the binary was missing before, run:
+  ```bash
+  composer update nowo-tech/claude-php-setup
+  ```
+
 ### 1.0.x → 1.1.x
 
 - **No breaking changes** to the Composer plugin API or CLI flags.

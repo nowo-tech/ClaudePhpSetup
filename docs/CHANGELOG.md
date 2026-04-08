@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] — 2026-04-08
+
+### Fixed
+
+- Publish Composer binary metadata via `"bin": ["bin/claude-php-setup"]` so `vendor/bin/claude-php-setup` is created correctly in consumer projects.
+
 ## [1.1.0] — 2026-04-08
 
 ### Added
@@ -50,4 +56,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--dir` flag to target a custom project directory
 - Heredoc dedentation — source code indented templates produce clean output
 
+[1.1.1]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.1
 [1.1.0]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.0
