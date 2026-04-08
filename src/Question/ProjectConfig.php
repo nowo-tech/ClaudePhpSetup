@@ -48,11 +48,12 @@ final class ProjectConfig
     public string $commandRunner = 'composer'; // composer | make | both
 
     // Generation options
-    public bool $generateClaudeMd = true;
-    public bool $generateCommands = true;
-    public bool $generateAgents   = false;
-    public bool $generateSkills   = false;
-    public bool $generateExamples = true;
+    public bool $generateClaudeMd    = true;
+    public bool $generateCommands    = true;
+    public bool $generateAgents      = false;
+    public bool $generateSkills      = false;
+    public bool $generateExamples    = true;
+    public bool $generateUsageManual = false;
 
     // Commands to generate
     /** @var string[] */

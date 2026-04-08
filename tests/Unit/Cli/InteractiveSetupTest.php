@@ -54,8 +54,8 @@ final class InteractiveSetupTest extends TestCase
     public function itRunsWizardAndGeneratesFiles(): void
     {
         $stdin = $this->memoryStream('r+');
-        // 22 QuestionTree prompts + "Generate now?" (default yes)
-        fwrite($stdin, str_repeat("\n", 23));
+        // 23 QuestionTree prompts + "Generate now?" (default yes)
+        fwrite($stdin, str_repeat("\n", 24));
         rewind($stdin);
 
         $stdout  = $this->memoryStream('w+');
@@ -80,8 +80,8 @@ final class InteractiveSetupTest extends TestCase
     public function itAbortsWhenUserDeclinesGeneration(): void
     {
         $stdin = $this->memoryStream('r+');
-        // 22 prompts in QuestionTree, then "n" declines the final "Generate now?" confirm
-        fwrite($stdin, str_repeat("\n", 22));
+        // 23 prompts in QuestionTree, then "n" declines the final "Generate now?" confirm
+        fwrite($stdin, str_repeat("\n", 23));
         fwrite($stdin, "n\n");
         rewind($stdin);
 
@@ -109,7 +109,7 @@ final class InteractiveSetupTest extends TestCase
         file_put_contents($this->tmpDir . '/CLAUDE.md', 'old');
 
         $stdin = $this->memoryStream('r+');
-        fwrite($stdin, str_repeat("\n", 23));
+        fwrite($stdin, str_repeat("\n", 24));
         rewind($stdin);
 
         $console = new Console($stdin, $this->memoryStream('w'));
@@ -132,7 +132,7 @@ final class InteractiveSetupTest extends TestCase
     public function itGeneratesAgentsWhenSelectedInWizard(): void
     {
         $stdin = $this->memoryStream('r+');
-        fwrite($stdin, str_repeat("\n", 17) . "n\ny\n\nn\nn\n\n");
+        fwrite($stdin, str_repeat("\n", 17) . "n\ny\n\nn\nn\n\n\n");
         rewind($stdin);
 
         $console = new Console($stdin, $this->memoryStream('w'));
@@ -160,7 +160,7 @@ final class InteractiveSetupTest extends TestCase
         touch($this->tmpDir . '/.claude/agents/y.md');
 
         $stdin = $this->memoryStream('r+');
-        fwrite($stdin, str_repeat("\n", 23));
+        fwrite($stdin, str_repeat("\n", 24));
         rewind($stdin);
 
         $stdout  = $this->memoryStream('w+');
@@ -206,7 +206,7 @@ final class InteractiveSetupTest extends TestCase
         );
 
         $stdin = $this->memoryStream('r+');
-        fwrite($stdin, str_repeat("\n", 23));
+        fwrite($stdin, str_repeat("\n", 24));
         rewind($stdin);
 
         $stdout  = $this->memoryStream('w+');

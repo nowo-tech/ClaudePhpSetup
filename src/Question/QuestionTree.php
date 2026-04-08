@@ -328,6 +328,11 @@ final class QuestionTree
             default: true,
         );
 
+        $config->generateUsageManual = $this->console->confirm(
+            question: 'Generate CLAUDE-USAGE.md manual (requirements, init, commands/agents/skills usage)',
+            default: false,
+        );
+
         if ($this->hasExistingFiles($config)) {
             $config->overwriteExisting = $this->console->confirm(
                 question: 'Overwrite existing files?',
@@ -481,6 +486,7 @@ final class QuestionTree
             $config->projectDir . '/.claude/agents',
             $config->projectDir . '/.claude/skills',
             $config->projectDir . '/examples',
+            $config->projectDir . '/CLAUDE-USAGE.md',
         ];
 
         foreach ($checks as $path) {

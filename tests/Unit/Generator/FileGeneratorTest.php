@@ -144,6 +144,32 @@ final class FileGeneratorTest extends TestCase
 
     #[Test]
     /**
+     * Handles the itGeneratesUsageManual operation.
+     */
+    public function itGeneratesUsageManual(): void
+    {
+        $config                      = $this->makeConfig();
+        $config->generateClaudeMd    = false;
+        $config->generateCommands    = true;
+        $config->selectedCommands    = ['code-review'];
+        $config->generateAgents      = true;
+        $config->selectedAgents      = ['php-architect'];
+        $config->generateSkills      = true;
+        $config->selectedSkills      = ['php-quality'];
+        $config->generateExamples    = false;
+        $config->generateUsageManual = true;
+
+        $this->generator->generate($config);
+
+        self::assertFileExists($this->tmpDir . '/CLAUDE-USAGE.md');
+        $content = file_get_contents($this->tmpDir . '/CLAUDE-USAGE.md') ?: '';
+        self::assertStringContainsString('/code-review', $content);
+        self::assertStringContainsString('@php-architect', $content);
+        self::assertStringContainsString('.claude/skills/php-quality/SKILL.md', $content);
+    }
+
+    #[Test]
+    /**
      * Handles the itRunsExamplesGenerationWhenDirectoriesAlreadyExist operation.
      */
     public function itRunsExamplesGenerationWhenDirectoriesAlreadyExist(): void

@@ -11,7 +11,9 @@ use NowoTech\ClaudePhpSetup\Template\Commands\CommandTemplates;
 use NowoTech\ClaudePhpSetup\Template\Examples\ExampleTemplates;
 use NowoTech\ClaudePhpSetup\Template\Skills\SkillTemplates;
 
+use function array_map;
 use function dirname;
+use function implode;
 use function sprintf;
 use function strlen;
 
@@ -66,6 +68,10 @@ final class FileGenerator
 
         if ($config->generateExamples) {
             $this->generateExamples($config);
+        }
+
+        if ($config->generateUsageManual) {
+            $this->generateUsageManual($config);
         }
 
         $this->console->writeln();
@@ -164,6 +170,85 @@ final class FileGenerator
             $this->ensureDirectory(dirname($path));
             $this->writeFile($path, $content, $config->overwriteExisting);
         }
+    }
+
+    /**
+     * Handles the generateUsageManual operation.
+     */
+    private function generateUsageManual(ProjectConfig $config): void
+    {
+        $path    = rtrim($config->projectDir, '/') . '/CLAUDE-USAGE.md';
+        $content = $this->usageManualContent($config);
+        $this->writeFile($path, $content, $config->overwriteExisting);
+    }
+
+    /**
+     * Handles the usageManualContent operation.
+     */
+    private function usageManualContent(ProjectConfig $config): string
+    {
+        $commands = $config->selectedCommands === []
+            ? '- No generated slash commands selected.'
+            : '- ' . implode("\n- ", array_map(
+                static fn (string $c): string => '/' . $c,
+                $config->selectedCommands,
+            ));
+
+        $agents = $config->selectedAgents === []
+            ? '- No generated agents selected.'
+            : '- ' . implode("\n- ", array_map(
+                static fn (string $a): string => '@' . $a,
+                $config->selectedAgents,
+            ));
+
+        $skills = $config->selectedSkills === []
+            ? '- No generated skills selected.'
+            : '- ' . implode("\n- ", array_map(
+                static fn (string $s): string => '.claude/skills/' . $s . '/SKILL.md',
+                $config->selectedSkills,
+            ));
+
+        return <<<MD
+        # Claude usage manual
+
+        This document explains how to work with Claude in this repository.
+
+        ## Requirements
+
+        - Claude Code installed and authenticated.
+        - Project dependencies installed (`composer install`).
+        - Generated guidance files present (`CLAUDE.md`, `.claude/commands`, `.claude/agents`, `.claude/skills` as applicable).
+
+        ## Initialize Claude in this repo
+
+        1. Open the repository root in your terminal/editor.
+        2. Start Claude Code and ensure it reads `CLAUDE.md`.
+        3. Keep QA commands available (`{$config->commandRunner}` workflow preferred for this project).
+
+        ## Run slash commands
+
+        Use `/` followed by the command name in Claude:
+
+        {$commands}
+
+        ## Run agents
+
+        Mention an agent with `@` and your task:
+
+        {$agents}
+
+        ## Use skills
+
+        Skills are markdown specs under `.claude/skills`. Ask Claude to follow one explicitly:
+
+        {$skills}
+
+        ## Suggested workflow
+
+        1. Ask Claude for a small scoped change.
+        2. Run QA (`cs-check`, `phpstan`, tests) before finalizing.
+        3. Request a review pass and summarize risks/tests.
+        MD;
     }
 
     /**

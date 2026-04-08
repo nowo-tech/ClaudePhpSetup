@@ -48,7 +48,7 @@ final class QuestionTreeCoverageTest extends TestCase
                 . "\n"
                 . str_repeat("\n", 5)
                 . str_repeat("\n", 4)
-                . str_repeat("\n", 6);
+                . str_repeat("\n", 7);
 
             $stdin = $this->memoryStream('r+');
             fwrite($stdin, $payload);
@@ -89,7 +89,7 @@ final class QuestionTreeCoverageTest extends TestCase
             );
 
             $stdin = $this->memoryStream('r+');
-            fwrite($stdin, str_repeat("\n", 30));
+            fwrite($stdin, str_repeat("\n", 31));
             rewind($stdin);
 
             $console = new Console($stdin, $this->memoryStream('w'));
@@ -125,7 +125,7 @@ final class QuestionTreeCoverageTest extends TestCase
             );
 
             $stdin = $this->memoryStream('r+');
-            fwrite($stdin, str_repeat("\n", 28));
+            fwrite($stdin, str_repeat("\n", 29));
             rewind($stdin);
 
             $console = new Console($stdin, $this->memoryStream('w'));
@@ -155,7 +155,7 @@ final class QuestionTreeCoverageTest extends TestCase
                 json_encode(['require' => ['php' => '>=8.1']], JSON_THROW_ON_ERROR),
             );
 
-            $payload = str_repeat("\n", 10) . "y\n\n" . str_repeat("\n", 9);
+            $payload = str_repeat("\n", 10) . "y\n\n" . str_repeat("\n", 10);
 
             $stdin = $this->memoryStream('r+');
             fwrite($stdin, $payload);
@@ -211,8 +211,8 @@ final class QuestionTreeCoverageTest extends TestCase
     /** @return array<string, array{string}> */
     public static function agentsStdinProvider(): array
     {
-        // Defaults until generation, disable commands, enable agents, then skip skills/examples.
-        $payload = str_repeat("\n", 17) . "n\ny\n\nn\nn\n";
+        // Defaults until generation, disable commands, enable agents, then skip skills/examples/manual.
+        $payload = str_repeat("\n", 17) . "n\ny\n\nn\nn\n\n";
 
         return ['default' => [$payload]];
     }
