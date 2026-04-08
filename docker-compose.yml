@@ -1,0 +1,23 @@
+name: claude-php-setup
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: claude-php-setup-php
+    working_dir: /app
+    volumes:
+      - .:/app
+      - composer-cache:/root/.composer/cache
+      - coverage-data:/app/coverage
+    environment:
+      XDEBUG_MODE: coverage
+      COMPOSER_ALLOW_SUPERUSER: "1"
+    tty: true
+    stdin_open: true
+    command: ["tail", "-f", "/dev/null"]
+
+volumes:
+  composer-cache:
+  coverage-data:

@@ -1,0 +1,117 @@
+{
+    "name": "nowo-tech/claude-php-setup",
+    "description": "Interactive CLI that generates customized Claude Code markdown files (CLAUDE.md, commands, agents) for PHP projects with Symfony, Laravel, Rector, PHPStan, PHP-CS-Fixer, GrumPHP and more.",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "keywords": [
+        "claude",
+        "claude-code",
+        "ai",
+        "php",
+        "symfony",
+        "laravel",
+        "rector",
+        "phpstan",
+        "php-cs-fixer",
+        "grumphp",
+        "agents",
+        "markdown",
+        "developer-tools",
+        "code-quality"
+    ],
+    "homepage": "https://github.com/nowo-tech/ClaudePhpSetup",
+    "support": {
+        "issues": "https://github.com/nowo-tech/ClaudePhpSetup/issues",
+        "source": "https://github.com/nowo-tech/ClaudePhpSetup"
+    },
+    "authors": [
+        {
+            "name": "Héctor Franco Aceituno",
+            "email": "hectorfranco@nowo.tech",
+            "homepage": "https://github.com/HecFranco",
+            "role": "Developer"
+        },
+        {
+            "name": "Nowo.tech",
+            "homepage": "https://nowo.tech"
+        }
+    ],
+    "require": {
+        "php": ">=8.1 <8.6",
+        "composer-plugin-api": "^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^10.0 || ^11.0",
+        "rector/rector": "^2.0"
+    },
+    "suggest": {
+        "nowo-tech/php-quality-tools": "Pre-configured Rector, PHP-CS-Fixer and Twig-CS-Fixer for your project",
+        "nowo-tech/code-review-guardian": "AI-powered code review automation"
+    },
+    "autoload": {
+        "psr-4": {
+            "NowoTech\\ClaudePhpSetup\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NowoTech\\ClaudePhpSetup\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "class": "NowoTech\\ClaudePhpSetup\\Plugin",
+        "branch-alias": {
+            "dev-main": "1.1-dev"
+        }
+    },
+    "scripts": {
+        "setup": "php bin/claude-php-setup",
+        "test": "phpunit --colors=always",
+        "test-coverage": "XDEBUG_MODE=coverage phpunit --colors=always --coverage-html coverage --coverage-clover coverage.xml --coverage-text",
+        "cs-check": "php-cs-fixer fix --dry-run --config=.php-cs-fixer.dist.php",
+        "cs-fix": "php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+        "rector": "rector process",
+        "rector-dry": "rector process --dry-run --no-progress-bar",
+        "phpstan": "phpstan analyse --memory-limit=512M",
+        "qa": [
+            "@cs-check",
+            "@phpstan",
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "setup": "Run the interactive Claude PHP Setup wizard",
+        "test": "Run the test suite",
+        "test-coverage": "Run tests with code coverage report",
+        "cs-check": "Check code style without fixing",
+        "cs-fix": "Fix code style automatically",
+        "rector": "Apply Rector refactoring",
+        "rector-dry": "Preview Rector changes without applying",
+        "phpstan": "Run PHPStan static analysis",
+        "qa": "Run full QA suite (cs-check + phpstan + tests)"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "phpstan/extension-installer": true
+        },
+        "platform": {
+            "php": "8.1.0"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "archive": {
+        "exclude": [
+            "/demo",
+            "/.cursor",
+            "/coverage"
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+#!/bin/sh
+# Pre-commit hook: run PHP-CS-Fixer check and PHPStan on staged files
+
+echo "⚙  Running pre-commit checks..."
+
+# Check if composer is available
+if ! command -v composer > /dev/null 2>&1; then
+    echo "⚠  Composer not found, skipping pre-commit checks."
+    exit 0
+fi
+
+# Run code style check
+echo "  → PHP-CS-Fixer..."
+composer cs-check --quiet
+CS_EXIT=$?
+
+# Run PHPStan
+echo "  → PHPStan..."
+composer phpstan --quiet
+PHPSTAN_EXIT=$?
+
+if [ $CS_EXIT -ne 0 ] || [ $PHPSTAN_EXIT -ne 0 ]; then
+    echo ""
+    echo "❌ Pre-commit checks failed."
+    if [ $CS_EXIT -ne 0 ]; then
+        echo "   Fix style issues: composer cs-fix"
+    fi
+    if [ $PHPSTAN_EXIT -ne 0 ]; then
+        echo "   Fix PHPStan errors: composer phpstan"
+    fi
+    exit 1
+fi
+
+echo "✓  Pre-commit checks passed."

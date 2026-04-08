@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+         colors="true"
+         bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <!-- Interactive stdin-driven wizard: covered indirectly via tests; excluded so line coverage reflects testable units. -->
+        <exclude>
+            <file>src/Question/QuestionTree.php</file>
+            <!-- Interactive CLI orchestration; behaviour covered via integration-style stdin tests. -->
+            <file>src/Cli/InteractiveSetup.php</file>
+        </exclude>
+    </source>
+</phpunit>

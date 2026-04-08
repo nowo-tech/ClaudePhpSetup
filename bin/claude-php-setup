@@ -1,0 +1,71 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+// Find the project root (where composer.json is) and the autoloader
+$autoloader = null;
+$projectDir = null;
+
+// Case 1: Running as installed package (vendor/bin/claude-php-setup)
+$candidates = [
+    // Running from project root
+    __DIR__ . '/../../../autoload.php',
+    // Running from inside the package directory
+    __DIR__ . '/../vendor/autoload.php',
+    // Fallback
+    __DIR__ . '/../../autoload.php',
+];
+
+foreach ($candidates as $candidate) {
+    if (file_exists($candidate)) {
+        $autoloader = $candidate;
+        break;
+    }
+}
+
+if (null === $autoloader) {
+    fwrite(STDERR, "Error: Could not find Composer's autoloader.\n");
+    fwrite(STDERR, "Run 'composer install' first.\n");
+    exit(1);
+}
+
+require $autoloader;
+
+// Determine the target project directory
+// Walk up from autoloader until we find composer.json
+$autoloaderDir = dirname((string) $autoloader);
+$projectDir = $autoloaderDir;
+
+// Typically autoloader is in vendor/, project root is one level up
+if (basename($projectDir) === 'vendor' || str_ends_with($projectDir, '/vendor')) {
+    $projectDir = dirname($projectDir);
+}
+
+// Parse CLI arguments
+$args = array_slice($argv, 1);
+$overwrite = in_array('--overwrite', $args, true) || in_array('-f', $args, true);
+
+// Allow passing a custom project directory
+$targetDir = $projectDir;
+foreach ($args as $i => $arg) {
+    if (('--dir' === $arg || '-d' === $arg) && isset($args[$i + 1])) {
+        $targetDir = realpath($args[$i + 1]) ?: $args[$i + 1];
+        break;
+    }
+    if (str_starts_with($arg, '--dir=')) {
+        $targetDir = realpath(substr($arg, 6)) ?: substr($arg, 6);
+        break;
+    }
+}
+
+// Validate project directory
+if (!is_dir($targetDir)) {
+    fwrite(STDERR, "Error: Directory '{$targetDir}' does not exist.\n");
+    exit(1);
+}
+
+use NowoTech\ClaudePhpSetup\Cli\InteractiveSetup;
+
+$setup = InteractiveSetup::create();
+exit($setup->run($targetDir, $overwrite));

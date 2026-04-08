@@ -1,0 +1,35 @@
+# Dependencies
+/vendor/
+
+# Build / coverage
+/coverage/
+/coverage.xml
+
+# Caches / analysis
+/.php-cs-fixer.cache
+/.phpunit.cache/
+/.phpunit.result.cache
+
+# Package manager lock (optional)
+composer.lock
+
+# IDE / local
+/.idea/
+/.vscode/
+/.env
+/.env.*
+!.env.example
+
+# Heavy / binary / logs
+*.log
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Secrets
+*.pem
+*.key
+*.p12

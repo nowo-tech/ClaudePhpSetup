@@ -1,0 +1,35 @@
+# Dependencies
+/vendor/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+
+# Test coverage and reports
+/coverage/
+/coverage.xml
+coverage-php.txt
+/.coverage/
+
+# PHP tool caches
+/.php-cs-fixer.cache
+/.phpunit.cache/
+/.phpunit.result.cache
+
+# Package manager lock (optional: commit lock in CI; ignore locally if desired)
+# /composer.lock
+
+# IDE / OS
+/.idea/
+/.vscode/
+*.swp
+.DS_Store
+
+# Archives / compressed
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z

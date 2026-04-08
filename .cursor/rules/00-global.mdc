@@ -1,0 +1,15 @@
+---
+description: Global rules for this Composer plugin repository
+alwaysApply: true
+---
+
+Assume this repository is a reusable **Composer plugin** (dev tooling).
+
+Prefer:
+- minimal, local changes
+- starting with files already open or explicitly mentioned
+- the smallest viable patch first
+- preserving backward compatibility unless explicitly requested otherwise
+
+Do not scan the whole repository unless explicitly required.
+Do not read vendor, cache, generated, build, coverage, lock, or binary files unless strictly needed for the task (for example dependency or release sync).

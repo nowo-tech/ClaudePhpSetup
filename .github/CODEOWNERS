@@ -1,0 +1,10 @@
+# CODEOWNERS for ClaudePhpSetup
+* @HecFranco
+
+/.github/ @HecFranco
+
+/src/ @HecFranco
+
+/tests/ @HecFranco
+
+/bin/ @HecFranco
