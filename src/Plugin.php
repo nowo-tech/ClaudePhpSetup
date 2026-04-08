@@ -80,9 +80,9 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
         }
 
         $io->write('');
-        $io->write('<info>╔══════════════════════════════════════════════════════════╗</info>');
-        $io->write('<info>║          Claude PHP Setup — nowo-tech/claude-php-setup   ║</info>');
-        $io->write('<info>╚══════════════════════════════════════════════════════════╝</info>');
+        $io->write('<info>╔═══════════════════════════════════════════════════╗</info>');
+        $io->write('<info>║   Claude PHP Setup — nowo-tech/claude-php-setup   ║</info>');
+        $io->write('<info>╚═══════════════════════════════════════════════════╝</info>');
         $io->write('');
         $io->write('  Generate customized Claude Code markdown files for your project:');
         $io->write('  CLAUDE.md · commands · agents · skills');

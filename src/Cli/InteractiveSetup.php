@@ -98,10 +98,10 @@ final class InteractiveSetup
     private function printBanner(): void
     {
         $this->console->writeln();
-        $this->console->writeln('  ╔═══════════════════════════════════════════════════════╗');
-        $this->console->writeln('  ║          Claude PHP Setup  ·  nowo-tech               ║');
-        $this->console->writeln('  ║  Generate Claude Code markdown for your PHP project   ║');
-        $this->console->writeln('  ╚═══════════════════════════════════════════════════════╝');
+        $this->console->writeln('  ╔════════════════════════════════════════════════════╗');
+        $this->console->writeln('  ║         Claude PHP Setup  ·  nowo-tech             ║');
+        $this->console->writeln('  ║ Generate Claude Code markdown for your PHP project ║');
+        $this->console->writeln('  ╚════════════════════════════════════════════════════╝');
         $this->console->writeln();
     }
 
@@ -159,9 +159,9 @@ final class InteractiveSetup
     private function printNextSteps(ProjectConfig $config): void
     {
         $this->console->writeln();
-        $this->console->writeln('  ╔═══════════════════════════════════════════════════════╗');
-        $this->console->writeln('  ║  Next steps                                           ║');
-        $this->console->writeln('  ╚═══════════════════════════════════════════════════════╝');
+        $this->console->writeln('  ╔══════════════════════════════════════════════════╗');
+        $this->console->writeln('  ║  Next steps                                      ║');
+        $this->console->writeln('  ╚══════════════════════════════════════════════════╝');
         $this->console->writeln();
 
         if ($config->generateClaudeMd) {
