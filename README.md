@@ -95,6 +95,13 @@ YAML-frontmatter skills used by Claude Code workflows — generated only if sele
 
 Sample workflows and prompts under `examples/` (README, workflows, prompts) when that generation step is enabled.
 
+### `CLAUDE-USAGE.md` (optional)
+
+Repository-specific usage manual for team onboarding:
+- requirements to run Claude in the project
+- initialization checklist
+- how to run generated slash commands, agents, and skills
+
 ## Question Tree
 
 The wizard auto-detects your stack from `composer.json` and pre-fills answers. You confirm or adjust each one:
@@ -129,6 +136,7 @@ The wizard auto-detects your stack from `composer.json` and pre-fills answers. Y
   ? Generate .claude/commands/: [Y]
     ? Select commands: (all)
   ? Generate .claude/agents/: [N]
+  ? Generate CLAUDE-USAGE.md manual: [N]
 ```
 
 ## Auto-detection

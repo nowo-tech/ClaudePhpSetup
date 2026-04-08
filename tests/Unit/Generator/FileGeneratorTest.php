@@ -170,6 +170,28 @@ final class FileGeneratorTest extends TestCase
 
     #[Test]
     /**
+     * Handles the itGeneratesUsageManualWithNoSelections operation.
+     */
+    public function itGeneratesUsageManualWithNoSelections(): void
+    {
+        $config                      = $this->makeConfig();
+        $config->generateClaudeMd    = false;
+        $config->generateCommands    = false;
+        $config->generateAgents      = false;
+        $config->generateSkills      = false;
+        $config->generateExamples    = false;
+        $config->generateUsageManual = true;
+
+        $this->generator->generate($config);
+
+        $content = file_get_contents($this->tmpDir . '/CLAUDE-USAGE.md') ?: '';
+        self::assertStringContainsString('No generated slash commands selected.', $content);
+        self::assertStringContainsString('No generated agents selected.', $content);
+        self::assertStringContainsString('No generated skills selected.', $content);
+    }
+
+    #[Test]
+    /**
      * Handles the itRunsExamplesGenerationWhenDirectoriesAlreadyExist operation.
      */
     public function itRunsExamplesGenerationWhenDirectoriesAlreadyExist(): void

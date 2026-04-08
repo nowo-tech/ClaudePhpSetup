@@ -16,6 +16,13 @@
 
 ## Version-specific notes
 
+### 1.1.3 → 1.1.4
+
+- No breaking changes.
+- New optional generated file: `CLAUDE-USAGE.md`.
+- If you want the new usage manual, re-run the wizard and enable:
+  - `Generate CLAUDE-USAGE.md manual (requirements, init, commands/agents/skills usage)`
+
 ### 1.1.2 → 1.1.3
 
 - No breaking changes.

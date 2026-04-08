@@ -30,6 +30,7 @@
   ? Generate CLAUDE.md: Y
   ? Generate .claude/commands/: Y  →  all
   ? Generate .claude/agents/: Y  →  php-architect, test-writer, refactor-agent, doctrine-expert
+  ? Generate CLAUDE-USAGE.md manual: Y
 ```
 
 **Generated files:**
@@ -53,6 +54,7 @@ CLAUDE.md
 .claude/agents/test-writer.md
 .claude/agents/refactor-agent.md
 .claude/agents/doctrine-expert.md
+CLAUDE-USAGE.md
 ```
 
 ---

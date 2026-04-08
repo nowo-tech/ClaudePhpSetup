@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.4] — 2026-04-08
+
+### Added
+
+- New optional wizard output: `CLAUDE-USAGE.md` (practical usage manual for Claude in the repository).
+- New generation question in **Files to Generate**: create usage manual with requirements, initialization steps, and how to run commands/agents/skills.
+
 ## [1.1.3] — 2026-04-08
 
 ### Changed
@@ -76,6 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--dir` flag to target a custom project directory
 - Heredoc dedentation — source code indented templates produce clean output
 
+[1.1.4]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.4
 [1.1.3]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.3
 [1.1.2]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.2
 [1.1.1]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.1
