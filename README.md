@@ -1,6 +1,6 @@
 # Claude PHP Setup
 
-[![CI](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/claude-php-setup.svg?style=flat)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/claude-php-setup.svg)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-6%20%7C%207%20%7C%208-000000?logo=symfony)](https://symfony.com) [![GitHub stars](https://img.shields.io/github/stars/nowo-tech/claude-php-setup.svg?style=social&label=Star)](https://github.com/nowo-tech/ClaudePhpSetup) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
+[![CI](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/claude-php-setup.svg?style=flat)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/claude-php-setup.svg)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-5.4%20%7C%206.4%20%7C%207.x%20%7C%208.0-000000?logo=symfony)](https://symfony.com) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
 
 > ⭐ **Found this useful?** Install from [Packagist](https://packagist.org/packages/nowo-tech/claude-php-setup) and give the repo a [star on GitHub](https://github.com/nowo-tech/ClaudePhpSetup) if it helps you.
 
@@ -166,15 +166,19 @@ The wizard reads your `composer.json` and detects:
 
 ## Documentation
 
+- [GitHub Actions CI requirements](docs/GITHUB_CI.md)
 - [Installation](docs/INSTALLATION.md)
 - [Configuration](docs/CONFIGURATION.md)
 - [Usage](docs/USAGE.md)
 - [Contributing](docs/CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
 - [Changelog](docs/CHANGELOG.md)
 - [Upgrading](docs/UPGRADING.md)
 - [Release](docs/RELEASE.md)
 - [Security](docs/SECURITY.md)
 - [Engram](docs/ENGRAM.md)
+- [Spec-driven development](docs/SPEC-DRIVEN-DEVELOPMENT.md)
+- [GitHub Spec Kit](docs/SPEC-KIT.md)
 
 ## Tests and coverage
 

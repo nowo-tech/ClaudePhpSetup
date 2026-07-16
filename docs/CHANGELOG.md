@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.5] — 2026-07-16
+
+### Changed
+
+- Console banners in the Composer plugin notice and interactive wizard for more consistent alignment and spacing.
+
+### Added
+
+- Contributor [Code of Conduct](../CODE_OF_CONDUCT.md) and Spec Kit / spec-driven development docs.
+- Git hygiene (REQ-GIT-001): `commit-msg` hook, `make check-no-cursor-coauthor`, and a CI job that rejects Cursor co-author trailers.
+
 ## [1.1.4] — 2026-04-08
 
 ### Added
@@ -83,6 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--dir` flag to target a custom project directory
 - Heredoc dedentation — source code indented templates produce clean output
 
+[1.1.5]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.5
 [1.1.4]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.4
 [1.1.3]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.3
 [1.1.2]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.2

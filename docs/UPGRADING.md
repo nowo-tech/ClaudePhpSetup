@@ -16,6 +16,12 @@
 
 ## Version-specific notes
 
+### 1.1.4 → 1.1.5
+
+- No breaking changes.
+- Cosmetic console banner alignment only; no new wizard questions or generated file formats.
+- Contributors: after pulling, run `make setup-hooks` once so the `commit-msg` hook enforces REQ-GIT-001 (no Cursor co-author trailers).
+
 ### 1.1.3 → 1.1.4
 
 - No breaking changes.

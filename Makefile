@@ -7,6 +7,7 @@ COMPOSE     := docker compose -f $(COMPOSE_FILE)
 SERVICE_PHP := php
 
 .PHONY: help up down build shell install ensure-up test test-coverage cs-check cs-fix rector rector-dry phpstan qa \
+	check-no-cursor-coauthor strip-cursor-coauthor-from-history \
 	release-check release-check-demos composer-sync clean update validate assets setup-hooks
 
 help:
@@ -95,7 +96,7 @@ composer-sync: ensure-up
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer validate --strict
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer update --no-install
 
-release-check: ensure-up composer-sync cs-fix cs-check rector-dry phpstan test-coverage release-check-demos
+release-check: check-no-cursor-coauthor ensure-up composer-sync cs-fix cs-check rector-dry phpstan test-coverage release-check-demos
 
 release-check-demos:
 	@if [ -f demo/Makefile ]; then $(MAKE) -C demo release-check; else echo "No demo/Makefile — skip release-check-demos"; fi
@@ -103,9 +104,15 @@ release-check-demos:
 setup: ensure-up
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer setup
 
+check-no-cursor-coauthor:
+	@chmod +x .scripts/check-no-cursor-coauthor.sh
+	@./.scripts/check-no-cursor-coauthor.sh HEAD
+
 setup-hooks:
-	git config core.hooksPath .githooks
-	@echo "Git hooks installed."
+	@chmod +x .githooks/pre-commit 2>/dev/null || true
+	@chmod +x .githooks/commit-msg 2>/dev/null || true
+	@git config core.hooksPath .githooks
+	@echo "✅ Git hooks installed (.githooks — includes commit-msg for REQ-GIT-001)."
 
 clean:
 	rm -rf vendor .phpunit.cache coverage coverage.xml .php-cs-fixer.cache .coverage
@@ -113,3 +120,12 @@ clean:
 
 assets:
 	@echo "No frontend assets in this package."
+
+
+# REQ-MAKE-008: update-deps (REQ-MAKE-008)
+BUNDLE_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+include $(BUNDLE_ROOT)/../.scripts/Makefile.update-deps.mk
+
+strip-cursor-coauthor-from-history:
+	@chmod +x .scripts/strip-cursor-coauthor-from-history.sh
+	@./.scripts/strip-cursor-coauthor-from-history.sh main

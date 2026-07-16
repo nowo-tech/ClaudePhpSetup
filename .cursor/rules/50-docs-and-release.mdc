@@ -11,7 +11,7 @@ Prefer:
 - concise, actionable release notes
 - updating CHANGELOG and UPGRADING together for notable user-facing changes
 - preserving existing document structure and tone
-- keeping examples consistent with actual defaults and commands in this package
+- keeping examples consistent with actual defaults and routes in this bundle
 
 Do not invent features, versions, or commands that are not present in the repository.
 Do not remove past release history unless explicitly requested.

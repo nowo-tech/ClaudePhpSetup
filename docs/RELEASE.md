@@ -7,3 +7,5 @@
 5. Push commits and tags: `git push && git push --tags`.
 6. Confirm the GitHub Release workflow created the release for the tag (or create it manually).
 7. Ensure Packagist has picked up the new tag (if the package is registered).
+
+After creating the release commit and tag, run `make check-no-cursor-coauthor` again **before** `git push` (REQ-GIT-001). The release commit itself is not covered by an earlier `release-check` run.

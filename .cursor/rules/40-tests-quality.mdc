@@ -2,7 +2,15 @@
 description: Tests and quality rules
 globs:
   - "tests/**/*.php"
+  - "tests/**/*.ts"
+  - "tests/**/*.js"
+  - "src/Resources/assets/**/*.test.ts"
+  - "src/Resources/assets/**/*.spec.ts"
+  - "src/Resources/assets/**/*.test.js"
+  - "src/Resources/assets/**/*.spec.js"
   - "phpunit.xml*"
+  - "vitest.config.*"
+  - "eslint.config.*"
 alwaysApply: false
 ---
 
