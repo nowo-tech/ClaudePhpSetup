@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.6] — 2026-07-22
+
+### Changed
+
+- GitHub Actions dependencies bumped: `actions/checkout` v7, `actions/cache` v6, `actions/github-script` v9, `softprops/action-gh-release` v3.
+
 ## [1.1.5] — 2026-07-16
 
 ### Changed
@@ -94,6 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--dir` flag to target a custom project directory
 - Heredoc dedentation — source code indented templates produce clean output
 
+[1.1.6]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.6
 [1.1.5]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.5
 [1.1.4]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.4
 [1.1.3]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.3

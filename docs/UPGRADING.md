@@ -16,6 +16,11 @@
 
 ## Version-specific notes
 
+### 1.1.5 → 1.1.6
+
+- No breaking changes.
+- CI-only: GitHub Actions dependency bumps. No package API, CLI, or generated-file changes for consumers.
+
 ### 1.1.4 → 1.1.5
 
 - No breaking changes.
