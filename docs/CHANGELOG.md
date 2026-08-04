@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.7] — 2026-08-04
+
+### Fixed
+
+- **CI:** run workflow on `master` (default branch), not only `main`.
+
 ## [1.1.6] — 2026-07-22
 
 ### Changed
@@ -100,6 +106,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `--dir` flag to target a custom project directory
 - Heredoc dedentation — source code indented templates produce clean output
 
+[1.1.7]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.7
 [1.1.6]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.6
 [1.1.5]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.5
 [1.1.4]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.4
