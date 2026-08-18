@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.8] — 2026-08-18
+
+### Fixed
+
+- **CI / Makefile:** `update-deps` include is optional (`-include`) so standalone GitHub Actions checkouts do not fail when the monorepo helper is absent (REQ-MAKE-009).
+
 ## [1.1.7] — 2026-08-04
 
 ### Fixed

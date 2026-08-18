@@ -16,6 +16,11 @@
 
 ## Version-specific notes
 
+### 1.1.7 → 1.1.8
+
+- No breaking changes.
+- Maintainer / CI only: Makefile `-include` for the optional monorepo `update-deps` helper. Consumers of the Composer package are unaffected.
+
 ### 1.1.5 → 1.1.6
 
 - No breaking changes.
