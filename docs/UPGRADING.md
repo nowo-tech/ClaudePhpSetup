@@ -16,6 +16,11 @@
 
 ## Version-specific notes
 
+### 1.1.8 → 1.1.9
+
+- No breaking changes.
+- Maintainer / CI only: `composer audit --locked` after install.
+
 ### 1.1.7 → 1.1.8
 
 - No breaking changes.
