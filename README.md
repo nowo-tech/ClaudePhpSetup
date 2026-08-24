@@ -1,12 +1,16 @@
 # Claude PHP Setup
 
-[![CI](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/claude-php-setup.svg?style=flat)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/claude-php-setup.svg)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-5.4%20%7C%206.4%20%7C%207.x%20%7C%208.0-000000?logo=symfony)](https://symfony.com) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
+[![CI](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/ClaudePhpSetup/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/claude-php-setup.svg?style=flat)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/claude-php-setup.svg)](https://packagist.org/packages/nowo-tech/claude-php-setup) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-5.4%20%7C%206.4%20%7C%207.x%20%7C%208.0-000000?logo=symfony)](https://symfony.com) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
 
 > ⭐ **Found this useful?** Install from [Packagist](https://packagist.org/packages/nowo-tech/claude-php-setup) and give the repo a [star on GitHub](https://github.com/nowo-tech/ClaudePhpSetup) if it helps you.
 
 An interactive CLI wizard that generates **customised Claude Code markdown files** for PHP projects.
 
 Answer a series of questions about your stack and the tool generates a `CLAUDE.md`, slash commands, sub-agents, optional **skills** (`.claude/skills/`) and **examples** (`examples/`) tailored to your exact setup — Symfony, Laravel, Rector, PHPStan, PHP-CS-Fixer, GrumPHP, PHPUnit, Pest, Twig, Doctrine, and more.
+
+![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
+
+This bundle is **FrankenPHP worker mode friendly**.
 
 ## Installation
 
