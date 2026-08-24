@@ -1,5 +1,27 @@
 # Upgrading
 
+## Table of contents
+
+- [From 1.1.9 to 1.1.10](#from-119-to-1110)
+
+## From 1.1.9 to 1.1.10
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/claude-php-setup
+```
+
+## From 1.1.9 to 1.1.10
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/claude-php-setup
+```
+
+# Upgrading
+
 ## General process
 
 1. Update the package:
