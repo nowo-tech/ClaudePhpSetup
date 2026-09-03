@@ -38,6 +38,7 @@ final class FileGenerator
     public function __construct(
         private readonly Console $console,
         private readonly ClaudeMdGenerator $claudeMdGenerator = new ClaudeMdGenerator(),
+        private readonly ?string $basePath = null,
     ) {
     }
 
@@ -293,9 +294,9 @@ final class FileGenerator
      */
     private function relativePath(string $absolutePath): string
     {
-        $cwd = getcwd();
-        if ($cwd && str_starts_with($absolutePath, $cwd)) {
-            return ltrim(substr($absolutePath, strlen($cwd)), '/');
+        $base = $this->basePath ?? getcwd();
+        if ($base !== false && $base !== '' && str_starts_with($absolutePath, $base)) {
+            return ltrim(substr($absolutePath, strlen($base)), '/');
         }
 
         return $absolutePath;
