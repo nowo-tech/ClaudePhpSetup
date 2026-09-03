@@ -216,25 +216,18 @@ final class FileGeneratorTest extends TestCase
      */
     public function itUsesAbsolutePathsInLogWhenProjectDirNotUnderCwd(): void
     {
-        $cwd = getcwd();
-        if ($cwd === false) {
-            self::markTestSkipped('No cwd');
-        }
-
         mkdir($this->tmpDir . '/nested', 0755, true);
-        chdir($this->tmpDir . '/nested');
 
-        try {
-            $config                   = $this->makeConfig();
-            $config->generateClaudeMd = true;
-            $config->generateCommands = false;
-            $config->generateAgents   = false;
+        $console   = new Console(STDIN, fopen('/dev/null', 'w') ?: STDOUT);
+        $generator = new FileGenerator($console, basePath: $this->tmpDir . '/nested');
 
-            $this->generator->generate($config);
-            self::assertFileExists($this->tmpDir . '/CLAUDE.md');
-        } finally {
-            chdir($cwd);
-        }
+        $config                   = $this->makeConfig();
+        $config->generateClaudeMd = true;
+        $config->generateCommands = false;
+        $config->generateAgents   = false;
+
+        $generator->generate($config);
+        self::assertFileExists($this->tmpDir . '/CLAUDE.md');
     }
 
     #[Test]
@@ -384,25 +377,17 @@ final class FileGeneratorTest extends TestCase
      */
     public function itUsesRelativePathsWhenUnderCurrentWorkingDirectory(): void
     {
-        $cwd = getcwd();
-        if ($cwd === false) {
-            self::markTestSkipped('No cwd');
-        }
+        $console   = new Console(STDIN, fopen('/dev/null', 'w') ?: STDOUT);
+        $generator = new FileGenerator($console, basePath: $this->tmpDir);
 
-        chdir($this->tmpDir);
+        $config                   = $this->makeConfig();
+        $config->generateClaudeMd = true;
+        $config->generateCommands = false;
+        $config->generateAgents   = false;
 
-        try {
-            $config                   = $this->makeConfig();
-            $config->generateClaudeMd = true;
-            $config->generateCommands = false;
-            $config->generateAgents   = false;
+        $generator->generate($config);
 
-            $this->generator->generate($config);
-
-            self::assertFileExists($this->tmpDir . '/CLAUDE.md');
-        } finally {
-            chdir($cwd);
-        }
+        self::assertFileExists($this->tmpDir . '/CLAUDE.md');
     }
 
     #[Test]
