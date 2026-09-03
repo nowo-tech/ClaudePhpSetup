@@ -2,7 +2,16 @@
 
 ## Table of contents
 
+- [From 1.1.10 to 1.1.11](#from-1110-to-1111)
 - [From 1.1.9 to 1.1.10](#from-119-to-1110)
+
+## From 1.1.10 to 1.1.11
+
+No application upgrade steps for typical Composer plugin usage. PHP **8.2+** remains required.
+
+```bash
+composer update nowo-tech/claude-php-setup
+```
 
 ## From 1.1.9 to 1.1.10
 

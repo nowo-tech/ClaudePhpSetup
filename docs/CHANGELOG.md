@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.11] - 2026-09-03
+
+### Fixed
+
+- **FrankenPHP / PHPStan:** `FileGenerator` accepts an optional `basePath` instead of relying on `chdir()` (worker-safe).
+- **CI:** drop obsolete PHP 8.1 from the test matrix (composer requires PHP ≥8.2).
+
+### Changed
+
+- **Deps (dev):** bump `rector/rector`, `friendsofphp/php-cs-fixer`, `composer/composer`; align Composer `platform.php` with PHP 8.2.
+
+[1.1.11]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.11
 
 ## [1.1.10] - 2026-08-24
 
