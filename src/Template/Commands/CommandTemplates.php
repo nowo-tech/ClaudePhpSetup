@@ -448,7 +448,7 @@ final class CommandTemplates
             return $this->createQueryBuilder('u')
                 ->andWhere('u.active = :active')
                 ->setParameter('active', true)
-                ->orderBy('u.createdAt', 'DESC')
+                ->orderBy('u.createdAt', SortDirection::Descending)
                 ->getQuery()
                 ->getResult();
         }
