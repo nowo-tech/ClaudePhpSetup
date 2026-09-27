@@ -16,6 +16,9 @@ make setup-hooks
 
 ## Running QA
 
+Run `make igor` for the Igor FrankenPHP worker-state audit (REQ-CS-008).
+
+
 ```bash
 make qa          # cs-check + phpstan + tests
 make test        # tests only

@@ -23,6 +23,7 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
      */
     public function activate(Composer $composer, IOInterface $io): void
     {
+        // @igor-ignore - Not shared worker service state.
         $this->composer = $composer;
     }
 

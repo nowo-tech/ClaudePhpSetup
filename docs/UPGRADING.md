@@ -1,5 +1,19 @@
 # Upgrading
 
+
+## Unreleased
+
+## To 1.1.12
+
+From **1.1.11** — REQ-CS-008 Igor FrankenPHP worker audit (igor-php require-dev, igor.json, make igor).
+
+```bash
+composer update nowo-tech/claude-php-setup
+php bin/console cache:clear
+```
+
+- No application upgrade steps for require-dev Igor tooling (REQ-CS-008). Consumers do not pull `igor-php/igor-php` transitively.
+
 ## Table of contents
 
 - [From 1.1.10 to 1.1.11](#from-1110-to-1111)

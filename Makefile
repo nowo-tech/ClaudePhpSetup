@@ -8,7 +8,7 @@ COMPOSE_BIN := $(shell docker compose version >/dev/null 2>&1 && echo "docker co
 COMPOSE     := $(COMPOSE_BIN) -f $(COMPOSE_FILE)
 SERVICE_PHP := php
 
-.PHONY: help up down build shell install ensure-up test test-coverage cs-check cs-fix rector rector-dry phpstan qa \
+.PHONY: help up down build shell install ensure-up test test-coverage cs-check cs-fix rector rector-dry phpstan igor qa \
 	check-no-cursor-coauthor strip-cursor-coauthor-from-history \
 	release-check release-check-demos composer-sync clean update validate assets setup-hooks
 
@@ -26,6 +26,7 @@ help:
 	@echo "  cs-check / cs-fix  Code style"
 	@echo "  rector / rector-dry  Rector"
 	@echo "  phpstan         Static analysis"
+	@echo "  igor          Run Igor worker-state audit (REQ-CS-008)"
 	@echo "  qa              cs-check + phpstan + test"
 	@echo "  release-check   Pre-release pipeline"
 	@echo "  composer-sync   Validate composer.json and refresh lock metadata"
@@ -98,7 +99,11 @@ composer-sync: ensure-up
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer validate --strict
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer update --no-install
 
-release-check: check-no-cursor-coauthor ensure-up composer-sync cs-fix cs-check rector-dry phpstan test-coverage release-check-demos
+
+# Run Igor worker-state audit (REQ-CS-008)
+igor: ensure-up
+	$(COMPOSE) exec -T php composer igor
+release-check: check-no-cursor-coauthor ensure-up composer-sync cs-fix cs-check rector-dry phpstan igor test-coverage release-check-demos
 
 release-check-demos:
 	@if [ -f demo/Makefile ]; then $(MAKE) -C demo release-check; else echo "No demo/Makefile — skip release-check-demos"; fi

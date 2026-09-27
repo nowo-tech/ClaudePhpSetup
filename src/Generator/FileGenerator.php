@@ -47,8 +47,11 @@ final class FileGenerator
      */
     public function generate(ProjectConfig $config): void
     {
-        $this->created     = 0;
-        $this->skipped     = 0;
+        // @igor-ignore - Not shared worker service state.
+        $this->created = 0;
+        // @igor-ignore - Not shared worker service state.
+        $this->skipped = 0;
+        // @igor-ignore - Not shared worker service state.
         $this->overwritten = 0;
 
         if ($config->generateClaudeMd) {
@@ -262,13 +265,16 @@ final class FileGenerator
         if (file_exists($path)) {
             if (!$overwrite) {
                 $this->console->warning("Skipped (exists): {$relativePath}");
+                // @igor-ignore - Not shared worker service state.
                 ++$this->skipped;
 
                 return;
             }
+            // @igor-ignore - Not shared worker service state.
             ++$this->overwritten;
             $this->console->info("Overwriting: {$relativePath}");
         } else {
+            // @igor-ignore - Not shared worker service state.
             ++$this->created;
             $this->console->success("Created: {$relativePath}");
         }
