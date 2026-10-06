@@ -1276,16 +1276,16 @@
         },
         {
             "name": "nowo-tech/phpstan-frankenphp",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/PhpStanFrankenPhp.git",
-                "reference": "7ebc8b43e3a60d95b6286424a769e481d9340304"
+                "reference": "c17850a9f2df731880a1a1267063ee41ec491ed5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/PhpStanFrankenPhp/zipball/7ebc8b43e3a60d95b6286424a769e481d9340304",
-                "reference": "7ebc8b43e3a60d95b6286424a769e481d9340304",
+                "url": "https://api.github.com/repos/nowo-tech/PhpStanFrankenPhp/zipball/c17850a9f2df731880a1a1267063ee41ec491ed5",
+                "reference": "c17850a9f2df731880a1a1267063ee41ec491ed5",
                 "shasum": ""
             },
             "require": {
@@ -1294,6 +1294,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
+                "igor-php/igor-php": "^0.9.7",
                 "phpstan/phpstan-phpunit": "^2.0",
                 "phpstan/phpstan-strict-rules": "^2.0",
                 "phpunit/phpunit": "^10.0 || ^11.0",
@@ -1358,7 +1359,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-09-24T21:06:57+00:00"
+            "time": "2026-09-27T16:25:28+00:00"
         },
         {
             "name": "phar-io/manifest",
