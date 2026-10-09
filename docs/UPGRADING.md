@@ -3,6 +3,16 @@
 
 ## Unreleased
 
+## To 1.1.13
+
+From **1.1.12** — `/make-repository` template uses `\SortDirection` (Doctrine ORM 3.7); dev dependency updates.
+
+```bash
+composer update nowo-tech/claude-php-setup
+```
+
+- No breaking changes. No application upgrade steps. Regenerate the Claude command files if you want the updated `/make-repository` example.
+
 ## To 1.1.12
 
 From **1.1.11** — REQ-CS-008 Igor FrankenPHP worker audit (igor-php require-dev, igor.json, make igor).

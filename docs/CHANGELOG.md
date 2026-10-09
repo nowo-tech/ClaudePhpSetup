@@ -7,10 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.13] - 2026-10-09
+
 ### Changed
 
-- **Doctrine ORM SortDirection:** replace string `'ASC'`/`'DESC'` in `#[ORM\OrderBy]` and QueryBuilder `orderBy`/`addOrderBy` with `SortDirection::Ascending`/`Descending` (doctrine/orm deprecation, https://github.com/doctrine/orm/issues/11313); require `doctrine/orm` `^3.7` where applicable.
+- **Doctrine ORM SortDirection:** the `/make-repository` command template now uses the global `\SortDirection::Descending` enum instead of the string `'DESC'` in QueryBuilder `orderBy()` (doctrine/orm 3.7 deprecation, https://github.com/doctrine/orm/issues/11313), and lists the rule in the repository requirements.
 
+### Dependencies
+
+- Dev tooling: `phpstan/phpstan` 2.3.1, `phpstan/phpstan-phpunit` 2.1.1, `rector/rector` 2.7.0, `phpunit/phpunit` 11.5.57, `friendsofphp/php-cs-fixer` 3.95.27, `igor-php/igor-php` ^0.10 (v0.10.1), `nowo-tech/phpstan-frankenphp` v1.2.3, Symfony console/finder v7.4.20.
+
+[1.1.13]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.1.13
 
 ## [1.1.12] - 2026-09-27
 
