@@ -428,6 +428,7 @@ final class CommandTemplates
         - Constructor calls `parent::__construct($registry, Entity::class)`
         - Every method has typed parameters and return types
         - No raw SQL — use QueryBuilder or DQL
+        - Sort directions use the global `\SortDirection` enum (Doctrine ORM 3.7+), not `'ASC'`/`'DESC'` strings
         - Method names are descriptive business terms
 
         **Method templates:**
@@ -448,7 +449,7 @@ final class CommandTemplates
             return $this->createQueryBuilder('u')
                 ->andWhere('u.active = :active')
                 ->setParameter('active', true)
-                ->orderBy('u.createdAt', SortDirection::Descending)
+                ->orderBy('u.createdAt', \SortDirection::Descending)
                 ->getQuery()
                 ->getResult();
         }
