@@ -1,5 +1,27 @@
 # Upgrading
 
+## Table of contents
+
+- [Unreleased](#unreleased)
+- [To 1.2.0](#to-120)
+- [To 1.1.13](#to-1113)
+- [To 1.1.12](#to-1112)
+- [From 1.1.10 to 1.1.11](#from-1110-to-1111)
+- [From 1.1.9 to 1.1.10](#from-119-to-1110)
+- [From 1.1.9 to 1.1.10](#from-119-to-1110-1)
+- [General process](#general-process)
+- [Version-specific notes](#version-specific-notes)
+  - [1.1.8 → 1.1.9](#118--119)
+  - [1.1.7 → 1.1.8](#117--118)
+  - [1.1.5 → 1.1.6](#115--116)
+  - [1.1.4 → 1.1.5](#114--115)
+  - [1.1.3 → 1.1.4](#113--114)
+  - [1.1.2 → 1.1.3](#112--113)
+  - [1.1.1 → 1.1.2](#111--112)
+  - [1.1.0 → 1.1.1](#110--111)
+  - [1.0.x → 1.1.x](#10x--11x)
+  - [General](#general)
+
 ## Unreleased
 
 ## To 1.2.0
@@ -33,11 +55,6 @@ php bin/console cache:clear
 ```
 
 - No application upgrade steps for require-dev Igor tooling (REQ-CS-008). Consumers do not pull `igor-php/igor-php` transitively.
-
-## Table of contents
-
-- [From 1.1.10 to 1.1.11](#from-1110-to-1111)
-- [From 1.1.9 to 1.1.10](#from-119-to-1110)
 
 ## From 1.1.10 to 1.1.11
 
