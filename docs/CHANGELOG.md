@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-13
+
 ### Added
 
 - PHP 8.5 support: recognised by the detector (`>=8.5` no longer capped to 8.4), offered by the wizard, and tested in CI (matrix 8.2–8.5).
@@ -17,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `FileGenerator` counts a file only after it was actually written, reports `Failed to write: …` for each failure, prints `Finished with errors: … N failed.` and `claude-php-setup` exits with code 1 when any file could not be written. `generate()` now returns the number of failed files.
 - Removed the dead `$binPath` lookup (and the unused Composer reference) from `Plugin`.
 - `docs/INSTALLATION.md` listed PHP 8.1 although Composer requires `>=8.2 <8.6`.
+
+[1.2.0]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.2.0
 
 ## [1.1.13] - 2026-10-09
 

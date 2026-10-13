@@ -1,7 +1,14 @@
 # Upgrading
 
-
 ## Unreleased
+
+## To 1.2.0
+
+From **1.1.13** — Rector major and PHP 8.5 detection fixed; failed writes reported.
+
+```bash
+composer update nowo-tech/claude-php-setup
+```
 
 - `vendor/bin/claude-php-setup` now exits with **1** when some files could not be written (it used to report them as created and exit 0). Scripts that run the wizard non-interactively may need to handle that exit code.
 - Projects requiring `rector/rector: ^2.x.y` (e.g. `^2.1.0`) are now detected as Rector 2; regenerate the files if your CLAUDE.md mentions Rector 1.x by mistake. PHP 8.5 projects get `8.5` instead of `8.4`.
