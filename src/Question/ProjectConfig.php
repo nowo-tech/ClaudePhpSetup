@@ -9,6 +9,9 @@ namespace NowoTech\ClaudePhpSetup\Question;
  */
 final class ProjectConfig
 {
+    /** PHP versions offered by the wizard and recognised by the detector (lowest to highest). */
+    public const PHP_VERSIONS = ['8.1', '8.2', '8.3', '8.4', '8.5'];
+
     // PHP
     public string $phpVersion = '8.3';
 

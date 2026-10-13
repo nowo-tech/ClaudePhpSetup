@@ -3,6 +3,9 @@
 
 ## Unreleased
 
+- `vendor/bin/claude-php-setup` now exits with **1** when some files could not be written (it used to report them as created and exit 0). Scripts that run the wizard non-interactively may need to handle that exit code.
+- Projects requiring `rector/rector: ^2.x.y` (e.g. `^2.1.0`) are now detected as Rector 2; regenerate the files if your CLAUDE.md mentions Rector 1.x by mistake. PHP 8.5 projects get `8.5` instead of `8.4`.
+
 ## To 1.1.13
 
 From **1.1.12** — `/make-repository` template uses `\SortDirection` (Doctrine ORM 3.7); dev dependency updates.

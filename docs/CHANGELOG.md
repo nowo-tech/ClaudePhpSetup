@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- PHP 8.5 support: recognised by the detector (`>=8.5` no longer capped to 8.4), offered by the wizard, and tested in CI (matrix 8.2–8.5).
+
+### Fixed
+
+- Rector major detection parses the constraint instead of searching for `1.`: `^2.1.0`, `^2.0.1` or `~2.1` are now detected as Rector 2 (were 1); `^1.0 || ^2.0` → 2, `>=1.0 <2.0` and `^0.x` → 1.
+- `FileGenerator` counts a file only after it was actually written, reports `Failed to write: …` for each failure, prints `Finished with errors: … N failed.` and `claude-php-setup` exits with code 1 when any file could not be written. `generate()` now returns the number of failed files.
+- Removed the dead `$binPath` lookup (and the unused Composer reference) from `Plugin`.
+- `docs/INSTALLATION.md` listed PHP 8.1 although Composer requires `>=8.2 <8.6`.
+
 ## [1.1.13] - 2026-10-09
 
 ### Changed

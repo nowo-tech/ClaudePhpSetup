@@ -446,15 +446,15 @@ final class ProjectDetectorTest extends TestCase
 
     #[Test]
     /**
-     * Handles the itNormalisesPhpVersion85ConstraintTo84Cap operation.
+     * PHP 8.5 is a supported version (previously capped to 8.4).
      */
-    public function itNormalisesPhpVersion85ConstraintTo84Cap(): void
+    public function itDetectsPhpVersion85(): void
     {
         $dir = $this->createTempProjectWith(['require' => ['php' => '>=8.5']]);
 
         $config = $this->detector->detect($dir);
 
-        self::assertSame('8.4', $config->phpVersion);
+        self::assertSame('8.5', $config->phpVersion);
 
         $this->removeTempProject($dir);
     }
@@ -517,6 +517,44 @@ final class ProjectDetectorTest extends TestCase
         $this->removeTempProject($dir);
     }
 
+    #[Test]
+    #[DataProvider('rectorConstraintProvider')]
+    /**
+     * Detects the Rector major from the constraint (regression: `^2.1.0` used to be detected as 1.x).
+     */
+    public function itDetectsRectorMajorFromConstraint(string $constraint, string $expectedMajor): void
+    {
+        $dir = $this->createTempProjectWith([
+            'require'     => ['php' => '>=8.2'],
+            'require-dev' => ['rector/rector' => $constraint],
+        ]);
+
+        $config = $this->detector->detect($dir);
+
+        self::assertSame($expectedMajor, $config->rectorVersion);
+
+        $this->removeTempProject($dir);
+    }
+
+    /** @return array<string, array{string, string}> */
+    public static function rectorConstraintProvider(): array
+    {
+        return [
+            '^2.1.0'        => ['^2.1.0', '2'],
+            '^2.0.1'        => ['^2.0.1', '2'],
+            '~2.1'          => ['~2.1', '2'],
+            '^1.2.10'       => ['^1.2.10', '1'],
+            '1.*'           => ['1.*', '1'],
+            '^0.18'         => ['^0.18', '1'],
+            '>=1.0 <2.0'    => ['>=1.0 <2.0', '1'],
+            '^1.0 || ^2.0'  => ['^1.0 || ^2.0', '2'],
+            '^1.0, !=2.0.1' => ['^1.0, !=2.0.1', '1'],
+            'v2.1.0'        => ['v2.1.0', '2'],
+            '*'             => ['*', '2'],
+            'dev-main'      => ['dev-main', '2'],
+        ];
+    }
+
     /** @return array<string, array{string, string}> */
     public static function phpVersionConstraintProvider(): array
     {
@@ -526,6 +564,9 @@ final class ProjectDetectorTest extends TestCase
             '^8.3'       => ['^8.3', '8.3'],
             '>=8.2 <8.6' => ['>=8.2 <8.6', '8.2'],
             '8.1.*'      => ['8.1.*', '8.1'],
+            '^8.4'       => ['^8.4', '8.4'],
+            '^8.5'       => ['^8.5', '8.5'],
+            '>=9.0'      => ['>=9.0', '8.5'],
         ];
     }
 

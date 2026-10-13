@@ -85,11 +85,11 @@ final class InteractiveSetup
         $this->console->section('Generating Files');
 
         // Generate files
-        $this->generator->generate($config);
+        $failed = $this->generator->generate($config);
 
         $this->printNextSteps($config);
 
-        return 0;
+        return $failed > 0 ? 1 : 0;
     }
 
     /**

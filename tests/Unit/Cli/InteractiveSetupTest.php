@@ -75,6 +75,30 @@ final class InteractiveSetupTest extends TestCase
 
     #[Test]
     /**
+     * Exits with 1 when some files could not be written.
+     */
+    public function itReturnsOneWhenFilesCannotBeWritten(): void
+    {
+        // A directory named CLAUDE.md cannot be overwritten by a file
+        mkdir($this->tmpDir . '/CLAUDE.md');
+
+        $stdin = $this->memoryStream('r+');
+        fwrite($stdin, str_repeat("\n", 24));
+        rewind($stdin);
+
+        $console = new Console($stdin, $this->memoryStream('w+'));
+        $setup   = new InteractiveSetup(
+            $console,
+            new ProjectDetector(),
+            new QuestionTree($console),
+            new FileGenerator($console),
+        );
+
+        self::assertSame(1, $setup->run($this->tmpDir, true));
+    }
+
+    #[Test]
+    /**
      * Handles the itAbortsWhenUserDeclinesGeneration operation.
      */
     public function itAbortsWhenUserDeclinesGeneration(): void

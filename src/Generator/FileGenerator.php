@@ -31,6 +31,7 @@ final class FileGenerator
     private int $created     = 0;
     private int $skipped     = 0;
     private int $overwritten = 0;
+    private int $failed      = 0;
 
     /**
      * Handles the __construct operation.
@@ -43,9 +44,11 @@ final class FileGenerator
     }
 
     /**
-     * Handles the generate operation.
+     * Generates the selected files and prints a summary.
+     *
+     * @return int Number of files that could not be written (0 on full success)
      */
-    public function generate(ProjectConfig $config): void
+    public function generate(ProjectConfig $config): int
     {
         // @igor-ignore - Not shared worker service state.
         $this->created = 0;
@@ -53,6 +56,8 @@ final class FileGenerator
         $this->skipped = 0;
         // @igor-ignore - Not shared worker service state.
         $this->overwritten = 0;
+        // @igor-ignore - Not shared worker service state.
+        $this->failed = 0;
 
         if ($config->generateClaudeMd) {
             $this->generateClaudeMd($config);
@@ -80,12 +85,22 @@ final class FileGenerator
 
         $this->console->writeln();
         $this->console->writeln('  ─────────────────────────────────');
-        $this->console->success(sprintf(
-            'Done! %d created, %d overwritten, %d skipped.',
+        $summary = sprintf(
+            '%d created, %d overwritten, %d skipped',
             $this->created,
             $this->overwritten,
             $this->skipped,
-        ));
+        );
+
+        if ($this->failed > 0) {
+            $this->console->error(sprintf('Finished with errors: %s, %d failed.', $summary, $this->failed));
+
+            return $this->failed;
+        }
+
+        $this->console->success('Done! ' . $summary . '.');
+
+        return 0;
     }
 
     /**
@@ -262,27 +277,36 @@ final class FileGenerator
     {
         $relativePath = $this->relativePath($path);
 
-        if (file_exists($path)) {
-            if (!$overwrite) {
-                $this->console->warning("Skipped (exists): {$relativePath}");
-                // @igor-ignore - Not shared worker service state.
-                ++$this->skipped;
+        $exists = file_exists($path);
 
-                return;
-            }
+        if ($exists && !$overwrite) {
+            $this->console->warning("Skipped (exists): {$relativePath}");
             // @igor-ignore - Not shared worker service state.
-            ++$this->overwritten;
-            $this->console->info("Overwriting: {$relativePath}");
-        } else {
-            // @igor-ignore - Not shared worker service state.
-            ++$this->created;
-            $this->console->success("Created: {$relativePath}");
+            ++$this->skipped;
+
+            return;
         }
 
         // Dedent heredoc indentation (remove leading whitespace from each line)
         $content = $this->dedent($content);
 
-        file_put_contents($path, $content . PHP_EOL);
+        if (!is_dir(dirname($path)) || @file_put_contents($path, $content . PHP_EOL) === false) {
+            // @igor-ignore - Not shared worker service state.
+            ++$this->failed;
+            $this->console->error("Failed to write: {$relativePath}");
+
+            return;
+        }
+
+        if ($exists) {
+            // @igor-ignore - Not shared worker service state.
+            ++$this->overwritten;
+            $this->console->info("Overwritten: {$relativePath}");
+        } else {
+            // @igor-ignore - Not shared worker service state.
+            ++$this->created;
+            $this->console->success("Created: {$relativePath}");
+        }
     }
 
     /**
@@ -290,8 +314,9 @@ final class FileGenerator
      */
     private function ensureDirectory(string $dir): void
     {
+        // A failure is reported per file by writeFile() (parent directory missing)
         if (!is_dir($dir)) {
-            mkdir($dir, 0755, true);
+            @mkdir($dir, 0755, true);
         }
     }
 

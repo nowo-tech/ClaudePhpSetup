@@ -410,6 +410,74 @@ final class FileGeneratorTest extends TestCase
         }
     }
 
+    #[Test]
+    /**
+     * Counts only successful writes and reports the files that could not be written.
+     */
+    public function itReportsFailedWritesAndDoesNotCountThem(): void
+    {
+        // A directory where CLAUDE.md should go makes file_put_contents() fail
+        mkdir($this->tmpDir . '/CLAUDE.md');
+        // A file where the .claude directory should go makes the commands directory impossible to create
+        file_put_contents($this->tmpDir . '/.claude', '');
+
+        $output    = fopen('php://memory', 'w+') ?: STDOUT;
+        $generator = new FileGenerator(new Console(STDIN, $output));
+
+        $config                      = $this->makeConfig();
+        $config->overwriteExisting   = true;
+        $config->generateClaudeMd    = true;
+        $config->generateCommands    = true;
+        $config->selectedCommands    = ['code-review'];
+        $config->generateAgents      = false;
+        $config->generateSkills      = false;
+        $config->generateExamples    = false;
+        $config->generateUsageManual = false;
+
+        $failed = $generator->generate($config);
+
+        rewind($output);
+        $text = (string) stream_get_contents($output);
+
+        self::assertSame(2, $failed);
+        self::assertSame(2, substr_count($text, 'Failed to write: '));
+        self::assertStringContainsString('/CLAUDE.md', $text);
+        self::assertStringContainsString('/.claude/commands/code-review.md', $text);
+        self::assertStringContainsString('Finished with errors: 0 created, 0 overwritten, 0 skipped, 2 failed.', $text);
+        self::assertStringNotContainsString('Created:', $text);
+        self::assertStringNotContainsString('Done!', $text);
+    }
+
+    #[Test]
+    /**
+     * Returns 0 and prints the success summary when every file is written.
+     */
+    public function itReturnsZeroAndCountsSuccessfulWrites(): void
+    {
+        file_put_contents($this->tmpDir . '/CLAUDE.md', 'old');
+
+        $output    = fopen('php://memory', 'w+') ?: STDOUT;
+        $generator = new FileGenerator(new Console(STDIN, $output));
+
+        $config                      = $this->makeConfig();
+        $config->overwriteExisting   = true;
+        $config->generateClaudeMd    = true;
+        $config->generateCommands    = true;
+        $config->selectedCommands    = ['code-review'];
+        $config->generateAgents      = false;
+        $config->generateSkills      = false;
+        $config->generateExamples    = false;
+        $config->generateUsageManual = false;
+
+        self::assertSame(0, $generator->generate($config));
+
+        rewind($output);
+        $text = (string) stream_get_contents($output);
+
+        self::assertStringContainsString('Done! 1 created, 1 overwritten, 0 skipped.', $text);
+        self::assertStringNotContainsString('old', (string) file_get_contents($this->tmpDir . '/CLAUDE.md'));
+    }
+
     /**
      * Handles the makeConfig operation.
      */

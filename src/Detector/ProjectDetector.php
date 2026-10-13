@@ -6,8 +6,11 @@ namespace NowoTech\ClaudePhpSetup\Detector;
 
 use NowoTech\ClaudePhpSetup\Question\ProjectConfig;
 
+use function count;
 use function in_array;
 use function is_array;
+
+use const PREG_SET_ORDER;
 
 /**
  * Auto-detects project configuration from composer.json and filesystem.
@@ -79,21 +82,16 @@ final class ProjectDetector
 
         // Extract minimum version from constraint like ">=8.2", "^8.2", ">=8.2 <8.6"
         if (preg_match('/(\d+\.\d+)/', (string) $phpConstraint, $matches)) {
-            $detected      = $matches[1];
-            $knownVersions = ['8.1', '8.2', '8.3', '8.4'];
-            if (in_array($detected, $knownVersions, true)) {
+            $detected = $matches[1];
+            $highest  = ProjectConfig::PHP_VERSIONS[count(ProjectConfig::PHP_VERSIONS) - 1];
+
+            if (in_array($detected, ProjectConfig::PHP_VERSIONS, true)) {
                 $config->phpVersion = $detected;
-            // @codeCoverageIgnoreStart
-            } elseif (version_compare($detected, '8.4', '>=')) {
-                $config->phpVersion = '8.4';
-            } elseif (version_compare($detected, '8.3', '>=')) {
-                $config->phpVersion = '8.3';
-            } elseif (version_compare($detected, '8.2', '>=')) {
-                $config->phpVersion = '8.2';
+            } elseif (version_compare($detected, $highest, '>')) {
+                $config->phpVersion = $highest;
             } else {
-                $config->phpVersion = '8.1';
+                $config->phpVersion = ProjectConfig::PHP_VERSIONS[0];
             }
-            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -226,8 +224,32 @@ final class ProjectDetector
             return;
         }
 
-        $rectorConstraint      = $allPackages['rector/rector'] ?? '';
-        $config->rectorVersion = str_contains($rectorConstraint, '^1') || str_contains($rectorConstraint, '1.') ? '1' : '2';
+        $config->rectorVersion = self::rectorMajorFromConstraint($allPackages['rector/rector'] ?? '');
+    }
+
+    /**
+     * Highest Rector major allowed by a Composer constraint ('1' for 0.x/1.x, '2' otherwise).
+     *
+     * Upper bounds (`<2.0`) and exclusions (`!=1.0`) are ignored, so `^2.1.0` → 2, `^1.0 || ^2.0` → 2,
+     * `>=1.0 <2.0` → 1. Unparseable constraints (`*`, `dev-main`) default to the current major (2).
+     */
+    private static function rectorMajorFromConstraint(string $constraint): string
+    {
+        preg_match_all('/(<=?|>=?|!=|\^|~|=)?\s*v?(\d+)(?:\.(?:\d+|\*))*/', $constraint, $matches, PREG_SET_ORDER);
+
+        $majors = [];
+        foreach ($matches as $match) {
+            if (str_starts_with($match[1], '<') || $match[1] === '!=') {
+                continue;
+            }
+            $majors[] = (int) $match[2];
+        }
+
+        if ($majors === []) {
+            return '2';
+        }
+
+        return max($majors) <= 1 ? '1' : '2';
     }
 
     /**

@@ -16,15 +16,11 @@ use Composer\Script\ScriptEvents;
  */
 final class Plugin implements PluginInterface, EventSubscriberInterface
 {
-    private Composer $composer;
-
     /**
-     * Handles the activate operation.
+     * Handles the activate operation (nothing to keep: the post-install/update notice needs no Composer state).
      */
     public function activate(Composer $composer, IOInterface $io): void
     {
-        // @igor-ignore - Not shared worker service state.
-        $this->composer = $composer;
     }
 
     /**
@@ -73,13 +69,6 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
      */
     private function notifySetup(IOInterface $io): void
     {
-        $vendorDir = $this->composer->getConfig()->get('vendor-dir');
-        $binPath   = $vendorDir . '/../vendor/bin/claude-php-setup';
-
-        if (!file_exists($binPath)) {
-            $binPath = 'vendor/bin/claude-php-setup';
-        }
-
         $io->write('');
         $io->write('<info>╔═══════════════════════════════════════════════════╗</info>');
         $io->write('<info>║   Claude PHP Setup — nowo-tech/claude-php-setup   ║</info>');
