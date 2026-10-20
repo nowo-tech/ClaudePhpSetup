@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.2.1](#to-121)
 - [To 1.2.0](#to-120)
 - [To 1.1.13](#to-1113)
 - [To 1.1.12](#to-1112)
@@ -23,6 +24,14 @@
   - [General](#general)
 
 ## Unreleased
+
+## To 1.2.1
+
+From **1.2.0**:
+
+```bash
+composer update nowo-tech/claude-php-setup
+```
 
 ## To 1.2.0
 

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.2.1] - 2026-10-21](#121---2026-10-21)
 - [[1.2.0] - 2026-10-13](#120---2026-10-13)
 - [[1.1.13] - 2026-10-09](#1113---2026-10-09)
 - [[1.1.12] - 2026-09-27](#1112---2026-09-27)
@@ -27,6 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-10-21
+
+Dependency refresh, wave-1/wave-2 REQ compliance (Rector 8.2 level, release-check chain, full wizard coverage, security docs). See [UPGRADING](UPGRADING.md#to-121).
+
 ### Changed
 
 - Dependencies refreshed (Composer and pnpm/npm lock files of the bundle and its demos, campaign 2026-10-19).
@@ -40,6 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `.scripts/check-no-cursor-coauthor.sh` also runs inside git worktrees (`.git` file instead of directory).
+
+[1.2.1]: https://github.com/nowo-tech/ClaudePhpSetup/releases/tag/v1.2.1
 
 ## [1.2.0] - 2026-10-13
 
