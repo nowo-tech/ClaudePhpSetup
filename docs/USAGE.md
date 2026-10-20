@@ -1,5 +1,14 @@
 # Usage Examples
 
+## Table of contents
+
+- [Symfony 8 project with full stack](#symfony-8-project-with-full-stack)
+- [Symfony upgrade project (7.2 → 8.0)](#symfony-upgrade-project-72--80)
+- [Laravel project with Pest](#laravel-project-with-pest)
+- [Minimal setup (no framework)](#minimal-setup-no-framework)
+- [Using the generated slash commands](#using-the-generated-slash-commands)
+- [Using sub-agents](#using-sub-agents)
+
 ## Symfony 8 project with full stack
 
 ```

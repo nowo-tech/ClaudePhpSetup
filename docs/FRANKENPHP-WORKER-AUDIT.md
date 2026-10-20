@@ -8,6 +8,17 @@
 | Method | Manual review of every file under `src/` (Composer plugin, CLI wizard, detector, generators, question tree) and `bin/claude-php-setup`; template classes skimmed for static state |
 | **Verdict** | — **Not applicable** — Composer plugin plus an interactive CLI wizard that writes Markdown files; no Symfony bundle, no container services, nothing is loaded by the HTTP kernel |
 
+## Table of contents
+
+- [Execution model assumed](#execution-model-assumed)
+- [Why it does not run in the worker](#why-it-does-not-run-in-the-worker)
+- [Summary](#summary)
+- [Services reviewed](#services-reviewed)
+- [Findings](#findings)
+  - [W-01 — CLI classes assume the CLI SAPI (Info)](#w-01--cli-classes-assume-the-cli-sapi-info)
+- [Usage recommendations in worker mode](#usage-recommendations-in-worker-mode)
+- [Re-audit triggers](#re-audit-triggers)
+
 ## Execution model assumed
 
 FrankenPHP worker mode boots the Symfony kernel once per worker and serves many requests with the same container. This audit assumes the **strict** variant: the kernel is **not** rebooted between requests, so every shared service, static property and PHP global survives from one request to the next. Two scenarios are evaluated:

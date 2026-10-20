@@ -1,5 +1,14 @@
 # Security — Claude PHP Setup
 
+## Table of contents
+
+- [Scope](#scope)
+- [Attack surface](#attack-surface)
+- [Secrets](#secrets)
+- [Dependencies](#dependencies)
+- [Reporting a vulnerability](#reporting-a-vulnerability)
+- [Release security checklist (12.4.1)](#release-security-checklist-1241)
+
 ## Scope
 
 Claude PHP Setup is a **development-time** Composer plugin that runs an interactive CLI and **writes** generated markdown and config files under paths you choose (`.claude/`, `CLAUDE.md`, etc.). It reads `composer.json` and related project files to detect your stack.

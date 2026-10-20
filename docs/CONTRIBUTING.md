@@ -1,5 +1,21 @@
 # Contributing
 
+## Table of contents
+
+- [Code of Conduct](#code-of-conduct)
+- [Getting started](#getting-started)
+- [Running QA](#running-qa)
+- [Areas where contributions are most welcome](#areas-where-contributions-are-most-welcome)
+  - [New templates / sections](#new-templates--sections)
+  - [Template files](#template-files)
+  - [Adding a new CLAUDE.md section](#adding-a-new-claudemd-section)
+  - [Adding a new slash command](#adding-a-new-slash-command)
+  - [Adding a new agent](#adding-a-new-agent)
+- [Code standards](#code-standards)
+- [Cursor Agent](#cursor-agent)
+- [Commit messages](#commit-messages)
+- [Git hooks (REQ-GIT-001)](#git-hooks-req-git-001)
+
 ## Code of Conduct
 
 This project follows the [Contributor Covenant Code of Conduct](../CODE_OF_CONDUCT.md). By participating, you are expected to uphold it. Please report unacceptable behavior to **hectorfranco@nowo.tech**.
@@ -71,6 +87,21 @@ Templates are PHP classes with static methods returning strings:
 - All properties and methods fully typed
 - PHPStan level 8 compliance
 - PHP-CS-Fixer `@Symfony` ruleset
+
+## Cursor Agent
+
+Contributors using Cursor Agent on this repository should enable these user-level settings (REQ-IDE-006):
+
+1. **Submit with Ctrl + Enter** (macOS: **⌘ + Enter**) — Cursor Settings → Agents / Chat → Submit with Ctrl + Enter. Enter inserts a newline; Ctrl/⌘+Enter submits the prompt.
+2. **Queue follow-ups while the agent is running** — in your user `settings.json` (Linux `~/.config/Cursor/User/settings.json`, Windows `%APPDATA%\Cursor\User\settings.json`, macOS `~/Library/Application Support/Cursor/User/settings.json`):
+
+```json
+{
+  "cursor.composer.queueMessageDefaultBehavior": "queue"
+}
+```
+
+Do not use `"steer"` as the default: it interrupts the running agent turn as soon as the follow-up is sent.
 
 ## Commit messages
 

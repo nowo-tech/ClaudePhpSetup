@@ -1,5 +1,14 @@
 # Installation
 
+## Table of contents
+
+- [Requirements](#requirements)
+- [Install](#install)
+- [Run the wizard](#run-the-wizard)
+- [Options](#options)
+- [Generated file locations](#generated-file-locations)
+- [Re-running](#re-running)
+
 ## Requirements
 
 - PHP 8.2 – 8.5 (`>=8.2 <8.6`)
