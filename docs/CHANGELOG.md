@@ -32,6 +32,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependencies refreshed (Composer and pnpm/npm lock files of the bundle and its demos, campaign 2026-10-19).
 - `.php-cs-fixer.dist.php`: `new ParallelConfig(2)` (REQ-CS-001).
 - Documentation: wave-1 REQ compliance — canonical issue and pull request templates, README documentation list order (extras under Additional documentation), CONTRIBUTING Cursor Agent queue settings (REQ-IDE-006), tables of contents on long docs.
+- Rector targets the PHP 8.2 floor (`LevelSetList::UP_TO_PHP_82`, REQ-CS-003); applied its suggestions (`QuestionTree` and `InteractiveSetup` are `readonly` classes; `ProjectDetector::rectorMajorFromConstraint()` is an instance method).
+- `release-check` starts with `ensure-up` and runs the new `check-open-prs` target (`.scripts/check-open-prs.sh`, REQ-MAKE-002 / REQ-REL-003).
+- Coverage: `QuestionTree` and `InteractiveSetup` are no longer excluded in `phpunit.xml.dist`; new tests cover the optional wizard branches (REQ-TEST-003).
+- `docs/SECURITY.md`: threat model, mitigations and logging sections, AI security audit item in the 12.4.1 checklist (REQ-SEC-001 / REQ-SEC-002); `.github/SECURITY.md` follows the canonical policy template (REQ-SEC-003).
+
+### Fixed
+
+- `.scripts/check-no-cursor-coauthor.sh` also runs inside git worktrees (`.git` file instead of directory).
 
 ## [1.2.0] - 2026-10-13
 

@@ -15,16 +15,16 @@ use NowoTech\ClaudePhpSetup\Question\QuestionTree;
 /**
  * Represents the InteractiveSetup class.
  */
-final class InteractiveSetup
+final readonly class InteractiveSetup
 {
     /**
      * Handles the __construct operation.
      */
     public function __construct(
-        private readonly Console $console,
-        private readonly ProjectDetector $detector,
-        private readonly QuestionTree $questionTree,
-        private readonly FileGenerator $generator,
+        private Console $console,
+        private ProjectDetector $detector,
+        private QuestionTree $questionTree,
+        private FileGenerator $generator,
     ) {
     }
 

@@ -12,13 +12,13 @@ use NowoTech\ClaudePhpSetup\Cli\Console;
 /**
  * Represents the QuestionTree class.
  */
-final class QuestionTree
+final readonly class QuestionTree
 {
     /**
      * Handles the __construct operation.
      */
     public function __construct(
-        private readonly Console $console,
+        private Console $console,
     ) {
     }
 

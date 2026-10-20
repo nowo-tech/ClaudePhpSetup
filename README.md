@@ -191,11 +191,11 @@ The wizard reads your `composer.json` and detects:
 ## Tests and coverage
 
 - **Tests:** PHPUnit (`tests/Unit`, `tests/Integration`).
-- **PHP (lines):** **100%** on covered `src/` paths (refresh with `make test-coverage`; the Makefile prints **Global PHP coverage (Lines)** at the end).
+- **PHP (lines):** **100%** of `src/` (refresh with `make test-coverage`; the Makefile prints **Global PHP coverage (Lines)** at the end).
 - **TS/JS:** N/A
 - **Python:** N/A
 
-Coverage configuration excludes interactive wizard orchestration files listed in `phpunit.xml.dist` (see file comments there).
+No `src/` file is excluded from coverage: the interactive wizard (`QuestionTree`, `InteractiveSetup`) is driven by scripted stdin in the unit tests. Only the TTY-only arrow-key/raw-mode helpers of `Console` carry `@codeCoverageIgnore` (they need a real terminal).
 
 ## License
 

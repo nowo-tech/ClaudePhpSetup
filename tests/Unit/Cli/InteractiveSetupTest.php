@@ -207,6 +207,35 @@ final class InteractiveSetupTest extends TestCase
 
     #[Test]
     /**
+     * Skills selected in the wizard are previewed, generated and mentioned in the next steps.
+     */
+    public function itPreviewsAndGeneratesSkillsWhenSelectedInWizard(): void
+    {
+        $stdin = $this->memoryStream('r+');
+        // 17 defaults, "n" commands, "n" agents, "y" skills, all skills, "n" examples, default manual, generate.
+        fwrite($stdin, str_repeat("\n", 17) . "n\nn\ny\n\nn\n\n\n");
+        rewind($stdin);
+
+        $stdout  = $this->memoryStream('w+');
+        $console = new Console($stdin, $stdout);
+        $setup   = new InteractiveSetup(
+            $console,
+            new ProjectDetector(),
+            new QuestionTree($console),
+            new FileGenerator($console),
+        );
+
+        self::assertSame(0, $setup->run($this->tmpDir, false));
+
+        rewind($stdout);
+        $out = (string) stream_get_contents($stdout);
+        self::assertStringContainsString('.claude/skills/php-quality/SKILL.md', $out);
+        self::assertStringContainsString('Skills live under .claude/skills/', $out);
+        self::assertFileExists($this->tmpDir . '/.claude/skills/php-quality/SKILL.md');
+    }
+
+    #[Test]
+    /**
      * Handles the itCreateFactoryBuildsInstance operation.
      */
     public function itCreateFactoryBuildsInstance(): void

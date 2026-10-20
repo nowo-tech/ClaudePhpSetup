@@ -8,15 +8,28 @@
 
 ## Reporting a Vulnerability
 
-Please **do not** report security vulnerabilities through public GitHub issues.
+We take the security of ClaudePhpSetup seriously. If you believe you have found a security vulnerability, please report it privately:
 
-Send details by email to: **hectorfranco@nowo.tech**
+- **Email**: hectorfranco@nowo.tech
+- **Do not** open a public GitHub issue for security-sensitive bugs.
 
-Include: type of issue, affected files/paths, steps to reproduce, and impact.
+Please include:
 
-## Contact
+- Type of issue (e.g., injection, XSS, auth bypass, deserialization risk, etc.)
+- Affected file(s) and version/tag/commit
+- Steps to reproduce
+- Impact assessment
+- PoC (if available)
 
-- **Maintainer**: [Héctor Franco Aceituno](https://github.com/HecFranco)
-- **Organization**: [nowo-tech](https://github.com/nowo-tech)
+## Response Timeline
 
-Preferred languages: English or Spanish.
+- Initial acknowledgment: within 48 hours
+- Follow-up status: within 7 days
+- Resolution: depends on complexity and impact
+
+## Disclosure Policy
+
+- We confirm receipt and validate the report.
+- We prepare and publish a fix as soon as possible.
+- We coordinate disclosure with the reporter.
+- We credit responsible disclosure (unless anonymity is requested).

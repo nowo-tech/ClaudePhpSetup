@@ -10,7 +10,7 @@ SERVICE_PHP := php
 
 .PHONY: help up down build shell install ensure-up test test-coverage cs-check cs-fix rector rector-dry phpstan igor qa \
 	check-no-cursor-coauthor strip-cursor-coauthor-from-history \
-	release-check release-check-demos composer-sync clean update validate assets setup-hooks
+	release-check check-open-prs release-check-demos composer-sync clean update validate assets setup-hooks
 
 help:
 	@echo "Claude PHP Setup — Development Commands"
@@ -28,7 +28,8 @@ help:
 	@echo "  phpstan         Static analysis"
 	@echo "  igor          Run Igor worker-state audit (REQ-CS-008)"
 	@echo "  qa              cs-check + phpstan + test"
-	@echo "  release-check   Pre-release pipeline"
+	@echo "  release-check   Pre-release pipeline (REQ-MAKE-002)"
+	@echo "  check-open-prs  Fail if unresolved open PRs (REQ-REL-003)"
 	@echo "  composer-sync   Validate composer.json and refresh lock metadata"
 	@echo "  clean           Remove vendor and local artifacts"
 	@echo "  update / validate  Composer"
@@ -103,13 +104,29 @@ composer-sync: ensure-up
 # Run Igor worker-state audit (REQ-CS-008)
 igor: ensure-up
 	$(COMPOSE) exec -T php composer igor
-release-check: check-no-cursor-coauthor ensure-up composer-sync cs-fix cs-check rector-dry phpstan igor test-coverage release-check-demos
+# REQ-MAKE-002: sequential chain, ensure-up first.
+release-check:
+	@$(MAKE) ensure-up
+	@$(MAKE) check-no-cursor-coauthor
+	@$(MAKE) check-open-prs
+	@$(MAKE) composer-sync
+	@$(MAKE) cs-fix
+	@$(MAKE) cs-check
+	@$(MAKE) rector-dry
+	@$(MAKE) phpstan
+	@$(MAKE) igor
+	@$(MAKE) test-coverage
+	@$(MAKE) release-check-demos
 
 release-check-demos:
 	@if [ -f demo/Makefile ]; then $(MAKE) -C demo release-check; else echo "No demo/Makefile — skip release-check-demos"; fi
 
 setup: ensure-up
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer setup
+
+check-open-prs:
+	@chmod +x .scripts/check-open-prs.sh
+	@GH_REPO=nowo-tech/ClaudePhpSetup ./.scripts/check-open-prs.sh
 
 check-no-cursor-coauthor:
 	@chmod +x .scripts/check-no-cursor-coauthor.sh

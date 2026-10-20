@@ -15,7 +15,7 @@ return RectorConfig::configure()
         __DIR__ . '/vendor',
     ])
     ->withSets([
-        LevelSetList::UP_TO_PHP_81,
+        LevelSetList::UP_TO_PHP_82,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::TYPE_DECLARATION,

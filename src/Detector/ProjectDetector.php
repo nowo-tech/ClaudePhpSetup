@@ -224,7 +224,7 @@ final class ProjectDetector
             return;
         }
 
-        $config->rectorVersion = self::rectorMajorFromConstraint($allPackages['rector/rector'] ?? '');
+        $config->rectorVersion = $this->rectorMajorFromConstraint($allPackages['rector/rector'] ?? '');
     }
 
     /**
@@ -233,7 +233,7 @@ final class ProjectDetector
      * Upper bounds (`<2.0`) and exclusions (`!=1.0`) are ignored, so `^2.1.0` → 2, `^1.0 || ^2.0` → 2,
      * `>=1.0 <2.0` → 1. Unparseable constraints (`*`, `dev-main`) default to the current major (2).
      */
-    private static function rectorMajorFromConstraint(string $constraint): string
+    private function rectorMajorFromConstraint(string $constraint): string
     {
         preg_match_all('/(<=?|>=?|!=|\^|~|=)?\s*v?(\d+)(?:\.(?:\d+|\*))*/', $constraint, $matches, PREG_SET_ORDER);
 

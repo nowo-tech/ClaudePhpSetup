@@ -16,11 +16,5 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
-        <!-- Interactive stdin-driven wizard: covered indirectly via tests; excluded so line coverage reflects testable units. -->
-        <exclude>
-            <file>src/Question/QuestionTree.php</file>
-            <!-- Interactive CLI orchestration; behaviour covered via integration-style stdin tests. -->
-            <file>src/Cli/InteractiveSetup.php</file>
-        </exclude>
     </source>
 </phpunit>
