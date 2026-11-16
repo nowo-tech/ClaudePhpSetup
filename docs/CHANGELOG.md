@@ -28,6 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Documentation
+
+- README: GitHub stars badge added to the badge row, before Coverage (REQ-DOCS-004).
+
 ## [1.2.1] - 2026-10-21
 
 Dependency refresh, wave-1/wave-2 REQ compliance (Rector 8.2 level, release-check chain, full wizard coverage, security docs). See [UPGRADING](UPGRADING.md#to-121).
