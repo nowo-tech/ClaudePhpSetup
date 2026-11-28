@@ -11,7 +11,7 @@
 
 ## Requirements
 
-- PHP 8.2 – 8.5 (`>=8.2 <8.6`)
+- PHP 8.2 – 8.6 (`>=8.2 <8.7`)
 - Composer 2.x
 
 ## Install

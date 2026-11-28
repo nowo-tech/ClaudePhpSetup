@@ -28,6 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- PHP 8.6 support in CI (stable, no allowed failures): `composer.json` allows PHP below 8.7 (was below 8.6) and a forward-compatibility workflow runs the suite on PHP 8.6.
+
 ### Documentation
 
 - README: GitHub stars badge added to the badge row, before Coverage (REQ-DOCS-004).
